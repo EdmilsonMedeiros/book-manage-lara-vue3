@@ -12,9 +12,8 @@
                 <span class="fw-bold ms-1">{{ Auth::user()->name }}</span>
             </div>
             <form action="{{ route('logOut') }}" method="GET" class="m-0">
-                
                 <button type="submit" class="btn btn-outline-light">
-                    <i class="fas fa-sign-out-alt me-2"></i>Sair
+                    <i class="bi bi-box-arrow-right me-2"></i>Sair
                 </button>
             </form>
         </div>
@@ -26,7 +25,7 @@
         <div class="col-md-6">
             <a href="" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
                 <div class="card-body text-center text-primary">
-                    <i class="fas fa-user-edit fa-3x mb-3"></i>
+                    <i class="bi bi-person-plus fs-1 mb-3"></i>
                     <h5 class="card-title">Cadastrar Autor</h5>
                     <p class="card-text text-muted">Adicione novos autores ao sistema</p>
                 </div>
@@ -35,7 +34,7 @@
         <div class="col-md-6">
             <a href="" class="card text-decoration-none shadow-sm hover-shadow">
                 <div class="card-body text-center text-primary">
-                    <i class="fas fa-book fa-3x mb-3"></i>
+                    <i class="bi bi-book fs-1 mb-3"></i>
                     <h5 class="card-title">Cadastrar Livro</h5>
                     <p class="card-text text-muted">Registre novos livros no sistema</p>
                 </div>
@@ -51,4 +50,45 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 </style>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Livros Cadastrados</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($books as $book)
+                            <tr>
+                                <td>{{ $book->title }}</td>
+                                <td>{{ $book->author->name }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Nenhum livro cadastrado</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

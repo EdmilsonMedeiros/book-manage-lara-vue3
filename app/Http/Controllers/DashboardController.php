@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(){
-        return view('dashboard.index');
+        $books = Book::all();
+
+        return view('dashboard.index', compact('books'));
     }
 }
