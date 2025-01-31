@@ -21,9 +21,11 @@
 </div>
 
 <div class="container mt-5">
+    @include('dashboard.modals.new-author')
+    @include('dashboard.modals.new-book', ['authors' => $authors])
     <div class="row">
         <div class="col-md-6">
-            <a href="" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#newAuthorModal" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
                 <div class="card-body text-center text-primary">
                     <i class="bi bi-person-plus fs-1 mb-3"></i>
                     <h5 class="card-title">Cadastrar Autor</h5>
@@ -32,7 +34,7 @@
             </a>
         </div>
         <div class="col-md-6">
-            <a href="" class="card text-decoration-none shadow-sm hover-shadow">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#newBookModal" class="card text-decoration-none shadow-sm hover-shadow">
                 <div class="card-body text-center text-primary">
                     <i class="bi bi-book fs-1 mb-3"></i>
                     <h5 class="card-title">Cadastrar Livro</h5>
