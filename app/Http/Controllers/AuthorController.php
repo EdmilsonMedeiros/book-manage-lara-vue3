@@ -28,7 +28,21 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'name.required' => 'O campo nome é obrigatório',
+            'name.string' => 'O nome deve ser um texto',
+            'name.max' => 'O nome não pode ter mais que 255 caracteres',
+            'state.required' => 'O campo estado é obrigatório',
+            'state.boolean' => 'O estado deve ser verdadeiro ou falso'
+        ];
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'state' => 'required|boolean'
+        ], $messages);
+        
+        Author::create($validatedData);
+        return redirect()->route('dashboard')->with('success', 'Autor cadastrado com sucesso.');
     }
 
     /**

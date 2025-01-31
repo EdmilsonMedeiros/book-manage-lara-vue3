@@ -11,6 +11,11 @@ class Author extends Model
 {
     use SoftDeletes, HasFactory;
 
+    protected $fillable = [
+        'name',
+        'state',
+    ];
+
     /**
      * Get all of the comments for the Author
      *
