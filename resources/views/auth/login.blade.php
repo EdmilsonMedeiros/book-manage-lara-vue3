@@ -37,7 +37,7 @@
                                     <i class="bi bi-envelope text-primary"></i>
                                 </span>
                                 <input type="email" class="form-control border-start-0" 
-                                    id="email" name="email" value="{{ old('email') }}" 
+                                    id="email" name="email" value="{{ old('email') ?? 'johndoe@example.com' }}" 
                                     required autofocus placeholder="Digite seu email">
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 </span>
                                 <input type="password" class="form-control border-start-0" 
                                     id="password" name="password" required 
-                                    placeholder="Digite sua senha">
+                                    placeholder="Digite sua senha" value="12345678">
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-4">
