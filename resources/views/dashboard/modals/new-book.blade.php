@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="newBookModal{{isset($book) ? $book->id : ''}}" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3">

@@ -34,7 +34,7 @@
                 <table class="table table-hover mb-0" id="authorsTable">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col" class="px-4">#ID</th>
+                            <th scope="col" class="text-start">#ID</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Status</th>
                             <th scope="col" width="200" class="text-center">Ações</th>
@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach($authors as $author)
                             <tr>
-                                <td class="px-4">{{ $author->id }}</td>
+                                <td class="text-start">{{ $author->id }}</td>
                                 <td class="fw-medium">{{ $author->name }}</td>
                                 <td>
                                     <span class="badge rounded-pill bg-{{ $author->state === 1 ? 'success' : 'danger' }}">
