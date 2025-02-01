@@ -20,7 +20,9 @@ class BookController extends Controller
             'publish_date.required'     => 'O ano de publicação é obrigatório',
             'publish_date.date'         => 'O ano deve ser uma data',
             'publish_date.max'          => 'O ano não pode ser maior que o ano atual',
-            'description.string'        => 'A descrição deve ser um texto'
+            'description.string'        => 'A descrição deve ser um texto',
+            'cover.mimes'               => 'O arquivo precisa ser PNG ou JPG',
+            'cover.max'                 => 'O tamanho limite do arquivo é 2MB',
         ];
 
         $validated = $request->validate([
@@ -29,7 +31,15 @@ class BookController extends Controller
             'author_id'         => 'required',
             'publish_date'      => 'required|date',
             'description'       => 'nullable|string',
+            'cover'             => 'nullable|mimes:jpg,jpeg,png|max:2048'
         ], $messages);
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $filename = date('Y-m-d_H-i-s') . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('covers', $filename, 'public');
+            $validated['cover'] = $path;
+        }
         
         try{
             Book::create($validated);

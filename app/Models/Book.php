@@ -15,6 +15,7 @@ class Book extends Model
         'description', 
         'author_id', 
         'publish_date',
+        'cover',
     ];
 
     /**

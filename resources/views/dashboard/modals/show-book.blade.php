@@ -8,6 +8,19 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    @if($book->cover)
+                        <div class="text-center mb-3">
+                            <img src="{{ asset('storage/' . $book->cover) }}" alt="Capa do livro" class="img-fluid rounded mb-3" style="max-height: 200px">
+                        </div>
+                    @else
+                        <div class="text-center mb-3">
+                            <i class="bi bi-image text-muted" style="font-size: 100px;"></i>
+                            <p class="text-muted">Sem imagem</p>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="mb-3">
                     <label class="fw-bold">Título:</label>
                     <p>{{ $book->title }}</p>
                 </div>

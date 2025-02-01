@@ -46,7 +46,16 @@
                     <tbody>
                         @foreach($books as $book)
                             <tr>
-                                <td>{{ $book->title }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        @if ($book->cover)
+                                            <img src="{{ Storage::url($book->cover) }}" alt="Capa do livro" class="me-2 rounded" style="width: 25px; object-fit: cover;"> <span> {{ $book->title }}</span>                                          
+                                        @elseif (!$book->cover)
+                                            <i class="bi bi-images fs-3" style="margin-right: 0.3em;"></i> <span> {{ $book->title }}</span>          
+                                        @endif 
+                                         
+                                    </div>
+                                </td>
                                 <td>{{ $book->author->name }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#showBookModal{{$book->id}}">
