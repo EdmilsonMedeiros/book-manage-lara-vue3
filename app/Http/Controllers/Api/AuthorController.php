@@ -104,6 +104,13 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        if($author->books()->exists()){
+            return response()->json([
+                "status" => false,
+                "error" => "Cannot delete author: This author has associated books"
+            ], 409);
+        }
+
         try {
             $author->delete();
             
