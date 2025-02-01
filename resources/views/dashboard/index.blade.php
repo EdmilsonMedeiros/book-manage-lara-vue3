@@ -4,21 +4,6 @@
 
 @section('subcontent')
 
-{{-- <div class="container mt-2">
-    @include('dashboard.modals.new-book', ['authors' => $authors])
-    <div class="row">
-        <div class="col-md-4">
-            <a href="{{ route('authors.index') }}" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
-                <div class="card-body text-center text-primary">
-                    <i class="bi bi-person-plus fs-1 mb-3"></i>
-                    <h5 class="card-title">Autores</h5>
-                    <p class="card-text text-muted">Visualize e adicione novos autores ao sistema</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</div> --}}
-
 <style>
 .hover-shadow:hover {
     transform: translateY(-5px);
@@ -27,6 +12,7 @@
 }
 </style>
 
+@include('dashboard.modals.new-book', ['authors' => $authors])
 <!-- Header Section -->
 <div class="container mt-2">
     <div class="row mb-2">
@@ -35,9 +21,9 @@
                 <h2 class="fw-bold text-primary mb-0">Lista de Livros</h2>
                 <p class="text-muted small">Gerencie os livros cadastrados no sistema</p>
             </div>
-            <a href="#" class="btn btn-outline-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal">
-                <i class="fas fa-plus-circle me-2"></i>Novo Livro <span class="bi bi-plus"></span>
-            </a>
+            <button class="btn btn-outline-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal">
+                Novo Livro <span class="bi bi-plus"></span>
+            </button>
         </div>
     </div>
 </div>

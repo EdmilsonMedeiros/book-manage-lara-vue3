@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +20,7 @@ Route::post('/register', [AuthController::class, 'registerSubmit'])->name('regis
 /**
  * Protected routes:
  */
-
-Route::middleware([AuthMiddleware::class])->group(function(){
+Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function(){
 
     Route::get('/logOut', [AuthController::class, "logOut"])->name('logOut');
 
@@ -36,6 +37,11 @@ Route::middleware([AuthMiddleware::class])->group(function(){
         Route::post('store', [BookController::class, 'store'])->name('books.store');
         Route::post('update', [BookController::class, 'update'])->name('books.update');
         Route::delete('destroy/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        ROute::put('permissions/sync/{user}', [UserController::class, 'permissionsSync'])->name('users.permissions.sync');
     });
 
 });

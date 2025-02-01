@@ -17,11 +17,20 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([AuthorsSeeder::class]);
+        $this->call([PermissionSeeder::class]);
 
-        User::factory()->create([
+        $john = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'johndoe@example.com',
             'password' => Hash::make('12345678')
+        ]);
+        
+        $john->givePermissionTo('admin');
+
+        User::factory()->create([
+            'name' => 'Peter Parker',
+            'email' => 'peterparker@example.com',
+            'password' => Hash::make('87654321')
         ]);
 
         

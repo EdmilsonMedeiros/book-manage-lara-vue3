@@ -36,8 +36,8 @@
                             <span class="bi bi-file-earmark-person"></span> Gerenciar Autores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('authors.*') ? 'active' : '' }}" href="{{ route('authors.index') }}"> 
-                            <span class="bi bi-person-gear"></span> Gerenciar Usuários</a>
+                        <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}"> 
+                            <span class="bi bi-person-gear"></span> Gerenciar Permissões</a>
                     </li>
                 </ul>
             </div>

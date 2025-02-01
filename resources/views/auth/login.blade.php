@@ -7,6 +7,28 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            
+            <div class="">
+                {{-- Flash Messages --}}
+                @if(session('error'))
+                <div class="container mt-4">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                @endif
+
+                @if(session('success'))
+                <div class="container mt-4">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                @endif
+            </div>
+
             <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
                 <div class="card-header bg-gradient-primary text-white text-center py-4" 
                      style="background: linear-gradient(45deg, #4e73df, #224abe);">
