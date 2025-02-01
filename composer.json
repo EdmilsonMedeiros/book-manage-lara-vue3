@@ -3,12 +3,16 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "automad/bootstrap-icons": "^1.2",
         "laravel/framework": "^11.31",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.12",
         "twbs/bootstrap": "^5.3",
