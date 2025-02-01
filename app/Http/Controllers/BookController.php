@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageHelper;
 use App\Models\Book;
 use Exception;
 use Illuminate\Http\Request;
@@ -62,15 +63,22 @@ class BookController extends Controller
             'publish_date.required'     => 'O ano de publicação é obrigatório',
             'publish_date.date'         => 'O ano deve ser uma data',
             'publish_date.max'          => 'O ano não pode ser maior que o ano atual',
-            'description.string'        => 'A descrição deve ser um texto'
+            'description.string'        => 'A descrição deve ser um texto',
+            'cover.mimes'               => 'O arquivo precisa ser PNG ou JPG',
+            'cover.max'                 => 'O tamanho limite do arquivo é 2MB',
         ];
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            ImageHelper::resizeImage($file);
+        }
 
         $validated = $request->validate([
             'title'             => 'required|string|max:255',
             'description'       => 'required|string',
             'author_id'         => 'required',
             'publish_date'      => 'required|date',
-            'description'       => 'nullable|string',
+            'cover'             => 'nullable|mimes:jpg,jpeg,png|max:2048',
         ], $messages);
 
         try {

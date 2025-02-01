@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
@@ -56,9 +57,7 @@ class BookController extends Controller
 
             if ($request->hasFile('cover')) {
                 $file = $request->file('cover');
-                $filename = date('Y-m-d_H-i-s') . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('covers', $filename, 'public');
-                $validated['cover'] = $path;
+                ImageHelper::resizeImage($file);
             }
 
             $book = Book::create($validated);
@@ -137,11 +136,11 @@ class BookController extends Controller
 
             if ($request->hasFile('cover')) {
                 $file = $request->file('cover');
-                $filename = date('Y-m-d_H-i-s') . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('covers', $filename, 'public');
-                $validated['cover'] = $path;
+                $path = ImageHelper::resizeImage($file);
             }
             
+            $validated['cover'] = $path;
+
             $book->update($validated);
 
             return response()->json([
