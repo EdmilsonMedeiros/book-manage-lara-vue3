@@ -10,12 +10,19 @@ class Book extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'title', 
+        'description', 
+        'author_id', 
+        'publish_date',
+    ];
+
     /**
      * Get the user that owns the Book
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
     }

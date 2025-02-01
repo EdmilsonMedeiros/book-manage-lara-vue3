@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $books = Book::all();
-        $authors = Author::all();
+        $authors = Author::wherestate(true)->get();
 
         return view('dashboard.index', compact('books', 'authors'));
     }

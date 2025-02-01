@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use Exception;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -12,15 +13,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $authors = Author::all();
+        return view('author.index', compact('authors'));
     }
 
     /**
@@ -29,36 +23,25 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'name.required' => 'O campo nome é obrigatório',
-            'name.string' => 'O nome deve ser um texto',
-            'name.max' => 'O nome não pode ter mais que 255 caracteres',
-            'state.required' => 'O campo estado é obrigatório',
-            'state.boolean' => 'O estado deve ser verdadeiro ou falso'
+            'name.required'     => 'O campo nome é obrigatório',
+            'name.string'       => 'O nome deve ser um texto',
+            'name.max'          => 'O nome não pode ter mais que 255 caracteres',
+            'state.required'    => 'O campo estado é obrigatório',
+            'state.boolean'     => 'O estado deve ser verdadeiro ou falso'
         ];
 
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name'  => 'required|string|max:255',
             'state' => 'required|boolean'
         ], $messages);
         
-        Author::create($validatedData);
-        return redirect()->route('dashboard')->with('success', 'Autor cadastrado com sucesso.');
-    }
+        try{
+            Author::create($validatedData);
+        } catch(Exception $e){
+            return redirect()->back()->with('error', "Algo deu errado: " . $e->getMessage());
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Author $author)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Author $author)
-    {
-        //
+        return redirect()->back()->with('success', 'Autor cadastrado com sucesso.');
     }
 
     /**
@@ -66,7 +49,27 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        
+        $messages = [
+            'name.required'     => 'O campo nome é obrigatório',
+            'name.string'       => 'O nome deve ser um texto',
+            'name.max'          => 'O nome não pode ter mais que 255 caracteres',
+            'state.required'    => 'O campo estado é obrigatório',
+            'state.boolean'     => 'O estado deve ser verdadeiro ou falso'
+        ];
+
+        $validatedData = $request->validate([
+            'name'  => 'required|string|max:255',
+            'state' => 'required|boolean'
+        ], $messages);
+
+        try{
+            $author->update($validatedData);
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', 'Algo deu errado: '. $e->getMessage());
+        }
+
+        return redirect()->back()->with('success', 'Autor atualizado com sucesso.');
     }
 
     /**
@@ -74,6 +77,17 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+
+        if($author->books()->exists()){
+            return redirect()->back()->with('error', 'Erro: Este autor possui livro(s) vinculado(s).');
+        }
+
+        try {
+            $author->delete();
+            return redirect()->back()->with('success', 'Autor removido com sucesso.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao remover autor: ' . $e->getMessage());
+        }
     }
+
 }

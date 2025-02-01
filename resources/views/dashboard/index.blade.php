@@ -1,67 +1,23 @@
-@extends('app')
+@extends('layout.index')
 
-@section('title', 'Login')
+@section('title', 'Dashboard')
 
-@section('content')
+@section('subcontent')
 
-<div class="container mt-4">
-    <div class="card bg-primary text-white">
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-                <span class="text-white-50">Bem-vindo,</span>
-                <span class="fw-bold ms-1">{{ Auth::user()->name }}</span>
-            </div>
-            <form action="{{ route('logOut') }}" method="GET" class="m-0">
-                <button type="submit" class="btn btn-outline-light">
-                    <i class="bi bi-box-arrow-right me-2"></i>Sair
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-
-@if(session('error'))
-    <div class="container mt-4">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@endif
-
-@if(session('success'))
-    <div class="container mt-4">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@endif
-
-<div class="container mt-5">
-    @include('dashboard.modals.new-author')
+{{-- <div class="container mt-2">
     @include('dashboard.modals.new-book', ['authors' => $authors])
     <div class="row">
-        <div class="col-md-6">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#newAuthorModal" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
+        <div class="col-md-4">
+            <a href="{{ route('authors.index') }}" class="card text-decoration-none mb-4 shadow-sm hover-shadow">
                 <div class="card-body text-center text-primary">
                     <i class="bi bi-person-plus fs-1 mb-3"></i>
-                    <h5 class="card-title">Cadastrar Autor</h5>
-                    <p class="card-text text-muted">Adicione novos autores ao sistema</p>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-6">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#newBookModal" class="card text-decoration-none shadow-sm hover-shadow">
-                <div class="card-body text-center text-primary">
-                    <i class="bi bi-book fs-1 mb-3"></i>
-                    <h5 class="card-title">Cadastrar Livro</h5>
-                    <p class="card-text text-muted">Registre novos livros no sistema</p>
+                    <h5 class="card-title">Autores</h5>
+                    <p class="card-text text-muted">Visualize e adicione novos autores ao sistema</p>
                 </div>
             </a>
         </div>
     </div>
-</div>
+</div> --}}
 
 <style>
 .hover-shadow:hover {
@@ -71,15 +27,30 @@
 }
 </style>
 
-<div class="container mt-5">
+<!-- Header Section -->
+<div class="container mt-2">
+    <div class="row mb-2">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="fw-bold text-primary mb-0">Lista de Livros</h2>
+                <p class="text-muted small">Gerencie os livros cadastrados no sistema</p>
+            </div>
+            <a href="#" class="btn btn-outline-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal">
+                <i class="fas fa-plus-circle me-2"></i>Novo Livro <span class="bi bi-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h5 class="card-title mb-0">Livros Cadastrados</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
+                <table class="table table-hover" id="bookTable">
+                    <thead class="table-light">
                         <tr>
                             <th>Título</th>
                             <th>Autor</th>
@@ -87,24 +58,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($books as $book)
+                        @foreach($books as $book)
                             <tr>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author->name }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary">
+                                    <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#showBookModal{{$book->id}}">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newBookModal{{$book->id}}">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este livro?')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">Nenhum livro cadastrado</td>
-                            </tr>
-                        @endforelse
+                            @include('dashboard.modals.show-book', [$book])
+                            @include('dashboard.modals.new-book', [$book])
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -112,3 +88,19 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    let table = new DataTable('#bookTable', {
+        responsive: true,
+        pageLength: 5,
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+        },
+        columnDefs: [
+            { orderable: false, targets: 2 }
+        ],
+    });
+</script>
+@endpush
