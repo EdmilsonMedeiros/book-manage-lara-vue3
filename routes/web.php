@@ -20,7 +20,7 @@ Route::post('/register', [AuthController::class, 'registerSubmit'])->name('regis
 /**
  * Protected routes:
  */
-Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function(){
+Route::middleware([AuthMiddleware::class, AdminMiddleware::class, 'log'])->group(function(){
 
     Route::get('/logOut', [AuthController::class, "logOut"])->name('logOut');
 
