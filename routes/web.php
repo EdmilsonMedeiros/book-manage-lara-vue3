@@ -35,7 +35,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::prefix('books')->group(function(){
         Route::post('/store', [BookController::class, 'store'])->name('books.store');
-        Route::put('/update/{book}', [BookController::class, 'update'])->name('books.update');
+        Route::post('/update', [BookController::class, 'update'])->name('books.update');
         Route::delete('destroy/{book}', [BookController::class, 'destroy'])->name('books.destroy');
     });
 

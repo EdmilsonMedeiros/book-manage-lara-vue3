@@ -57,9 +57,10 @@ class BookController extends Controller
 
             if ($request->hasFile('cover')) {
                 $file = $request->file('cover');
-                ImageHelper::resizeImage($file);
+                $path = ImageHelper::resizeImage($file);
+                $validated['cover'] = $path;
             }
-
+            
             $book = Book::create($validated);
 
             return response()->json([
@@ -137,9 +138,10 @@ class BookController extends Controller
             if ($request->hasFile('cover')) {
                 $file = $request->file('cover');
                 $path = ImageHelper::resizeImage($file);
+                $validated['cover'] = $path;
+            } else {
+                unset($validated['cover']);
             }
-            
-            $validated['cover'] = $path;
 
             $book->update($validated);
 

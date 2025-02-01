@@ -54,8 +54,14 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request)
     {
+        $book = Book::find($request->id);
+
+        if(!$book){
+            return redirect()->back()->with('error', 'Livro não encontrado.');
+        }
+
         $messages = [
             'title.required'            => 'O título é obrigatório',
             'title.max'                 => 'O título não pode ter mais que 255 caracteres',
@@ -68,11 +74,6 @@ class BookController extends Controller
             'cover.max'                 => 'O tamanho limite do arquivo é 2MB',
         ];
 
-        if ($request->hasFile('cover')) {
-            $file = $request->file('cover');
-            ImageHelper::resizeImage($file);
-        }
-
         $validated = $request->validate([
             'title'             => 'required|string|max:255',
             'description'       => 'required|string',
@@ -82,6 +83,14 @@ class BookController extends Controller
         ], $messages);
 
         try {
+            if ($request->hasFile('cover')) {
+                $file = $request->file('cover');
+                $path = ImageHelper::resizeImage($file);
+                $validated['cover'] = $path;
+            } else {
+                unset($validated['cover']);
+            }
+
             $book->update($validated);
         } catch(Exception $e) {
             return redirect()->back()->with('error', 'Algo deu errado: ' . $e->getMessage());
