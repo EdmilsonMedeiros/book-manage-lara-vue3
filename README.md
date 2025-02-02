@@ -9,7 +9,7 @@ _Tecnologias utilizadas_
 
 ## EXECUÇÃO DO PROJETO
 
--   Clone o repositório (<code> git clone https://github.com/EdmilsonMedeiros/book-manage-lara-blade.git </code>)
+-   Clone o repositório (<code> git clone https://github.com/EdmilsonMedeiros/book-manage-lara-vue3.git </code>)
 -   Instale o composer (<code> composer install </code>)
 -   Copie e edite o arquivo .env para um banco existente (<code> cp .env.example .env </code>)
 -   Execute as migrations (<code> php artisan migrate </code>)
