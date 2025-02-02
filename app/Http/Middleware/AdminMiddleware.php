@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
@@ -18,7 +19,7 @@ class AdminMiddleware
     {
         if (!Auth::user() || !Auth::user()->hasPermissionTo('admin')) {
             Auth::logout();
-            return redirect()->back()->with('error', 'Acesso não autorizado. Você precisa ter permissão de administrador.');
+            return redirect()->route('login')->with('error', 'Acesso não autorizado. Você precisa ter permissão de administrador.');
         }
 
         return $next($request);

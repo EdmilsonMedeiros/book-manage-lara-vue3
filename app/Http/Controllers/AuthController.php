@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
@@ -15,7 +16,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return view('auth.login');
+        return Inertia::render("Auth/Login");
     }
 
     public function register()
@@ -24,7 +25,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return view('auth.register');
+        return Inertia::render('Auth/Register');
     }
 
     public function registerSubmit(Request $request)
@@ -51,20 +52,18 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($user);
-
-        return redirect()->route('dashboard')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->back()->with('success', 'Cadastro realizado com sucesso.');
     }
 
     public function logOut() 
     {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'Você foi desconectado com sucesso!');
+        return redirect()->back();
     }
 
     public function loginSubmit(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ], [
@@ -74,11 +73,9 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('dashboard')->with('success', 'Login realizado com sucesso!');
+            return redirect()->route('dashboard')->with('sucess', 'Login realizado com sucesso!');
         }
 
-        return back()->withErrors([
-            'email' => 'Credenciais inválidas.',
-        ]);
+        return redirect()->back()->with('error', 'As credenciais fornecidas estão incorretas.');
     }
 }

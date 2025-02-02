@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Api\AdminMiddleare;
+use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\LogMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -17,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => AdminMiddleare::class,
             'log'   => LogMiddleware::class,
+        ]);
+
+        $middleware->web(append: [
+            HandleInertiaRequests::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
