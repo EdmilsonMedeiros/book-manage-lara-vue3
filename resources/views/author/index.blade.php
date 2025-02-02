@@ -26,7 +26,7 @@
             <!-- Main Card -->
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white m-0">
-            <h5 class="card-title mb-0">Livros Cadastrados</h5>
+            <h5 class="card-title mb-0">Autores Cadastrados</h5>
         </div>
 
         <div class="card-body">
