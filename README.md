@@ -2,8 +2,8 @@
 
 _Tecnologias utilizadas_
 
--   PHP >= 8.3
--   MySQL >= 8.4
+-   PHP 8.3
+-   MySQL 8.4
 -   Laravel 11
 -   Bootstrap 5
 
