@@ -16,3 +16,5 @@ _Tecnologias utilizadas_
 -   Execute os seeders (<code> php artisan db:seed </code>)
 -   Gere a chave da aplicação <code> php artisan key:generate </code>
 -   Sirva a aplicação (<code> php artisan serve </code>)
+-   Instale o npm (<code> npm install </code>)
+-   Buid a aplicação (<code> npm run build </code>) Em desenvolvimento: (<code> npm run dev </code>)
