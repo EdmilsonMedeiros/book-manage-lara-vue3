@@ -1,4 +1,4 @@
-## GESTOR DE LIVROS
+# GESTOR DE LIVROS
 
 _Tecnologias utilizadas_
 
@@ -7,7 +7,7 @@ _Tecnologias utilizadas_
 -   Laravel 11
 -   Bootstrap 5
 
-# EXECUÇÃO DO PROJETO
+## EXECUÇÃO DO PROJETO
 
 -   Clone o repositório (<code> git clone https://github.com/EdmilsonMedeiros/book-manage-lara-blade.git </code>)
 -   Instale o composer (<code> composer install </code>)
