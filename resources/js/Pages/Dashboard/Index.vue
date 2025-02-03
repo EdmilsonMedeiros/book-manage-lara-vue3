@@ -1,6 +1,5 @@
 <template>
     <Layout :user="user" />
-    <FlashMessages />
 
     <div>
         <!-- Header Section -->
@@ -19,7 +18,8 @@
                     </div>
                     <button
                         class="btn btn-outline-primary px-4 d-flex align-items-center"
-                        @click="openNewBookModal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#newBookModal"
                     >
                         Novo Livro <span class="bi bi-plus"></span>
                     </button>
@@ -28,149 +28,111 @@
         </div>
 
         <div class="container">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">Livros Cadastrados</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover" id="bookTable">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Autor</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="book in books" :key="book.id">
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img
-                                                v-if="book.cover"
-                                                :src="book.cover"
-                                                alt="Capa do livro"
-                                                class="me-2 rounded"
-                                                style="
-                                                    width: 25px;
-                                                    object-fit: cover;
-                                                "
-                                            />
-                                            <i
-                                                v-else
-                                                class="bi bi-images fs-3"
-                                                style="margin-right: 0.3em"
-                                            ></i>
-                                            <span>{{ book.title }}</span>
-                                        </div>
-                                    </td>
-                                    <td>{{ book.author.name }}</td>
-                                    <td>
-                                        <!-- <button
-                                            class="btn btn-sm btn-outline-info"
-                                            @click="openShowBookModal(book.id)"
-                                        >
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button
-                                            class="btn btn-sm btn-outline-primary"
-                                            @click="openEditBookModal(book.id)"
-                                        >
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button
-                                            class="btn btn-sm btn-outline-danger"
-                                            @click="deleteBook(book.id)"
-                                        >
-                                            <i class="bi bi-trash"></i>
-                                        </button> -->
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <FlashMessages />
 
-        <!-- Modals -->
-        <!-- <show-book-modal
-            v-if="showBookModal"
-            :book="selectedBook"
-            @close="closeShowBookModal"
-        ></show-book-modal>
-        <new-book-modal
-            v-if="newBookModal"
-            :book="selectedBook"
-            @close="closeNewBookModal"
-        ></new-book-modal> -->
+            <Table
+                :requestUrl="'/books/getBooks'"
+                :collumnNames="['Titulo', 'Data da Publicação']"
+                :collumnKeys="['title', 'publish_date']"
+                :checkBoxes="false"
+                :buttons="['delete', 'edit', 'show']"
+                :deleteAllButton="false"
+                :perPage="5"
+                :searchTitle="'Buscar livros'"
+                @destroyRegisterEmit="onDestroyRegister"
+                @showRegisterEmit="showRegisterEmit"
+                @editRegister="editRegister"
+                ref="tableRef"
+                :withImage="'cover'"
+            />
+        </div>
     </div>
+
+    <ModalShowBook v-if="selectedShowBook" :book="selectedShowBook" />
+
+    <ModalNewBook :authors="authors" @onBookCreated="onBookCreated" />
+
+    <ModalNewBook
+        :v-if="selectedBook"
+        :authors="authors"
+        :book="selectedBook"
+        @onBookCreated="onBookCreated"
+    />
 </template>
 
 <script>
 import Layout from "@/Pages/Layout/Layout.vue";
 import FlashMessages from "@/Pages/Components/FlashMessages.vue";
 import DataTable from "datatables.net-dt";
+import ModalNewBook from "@/Pages/Components/ModalNewBook.vue";
+import Table from "@/Pages/Components/Table.vue";
+import ModalShowBook from "@/Pages/Components/ModalShowBook.vue";
+
+import { computed } from "vue";
 
 export default {
     props: {
         user: Object,
-        books: Object,
+        books: Array,
         authors: Object,
     },
     components: {
         Layout,
         FlashMessages,
+        ModalNewBook,
+        Table,
+        ModalShowBook,
     },
     data() {
         return {
-            books: [], // This should be populated with your books data
             showBookModal: false,
             newBookModal: false,
             selectedBook: null,
+            selectedShowBook: null,
         };
     },
+    emits: [
+        "destroyRegisterEmit",
+        "destroySelectedRegistersEmit",
+        "showRegisterEmit",
+        "onShowRegister",
+        "onBookCreated",
+        "editRegister",
+    ],
     methods: {
-        openShowBookModal(bookId) {
-            this.selectedBook = this.books.find((book) => book.id === bookId);
-            this.showBookModal = true;
+        showRegisterEmit(book) {
+            this.selectedShowBook = book;
+
+            this.$nextTick(() => {
+                $("#showBookModal" + book.id).modal("show");
+            });
         },
-        closeShowBookModal() {
-            this.showBookModal = false;
-            this.selectedBook = null;
+        editRegister(book) {
+            this.selectedBook = book;
+            this.$nextTick(() => {
+                $(`#newBookModal${book.id}`).modal("show");
+            });
         },
-        openNewBookModal() {
-            this.selectedBook = null;
-            this.newBookModal = true;
+        onBookCreated() {
+            this.$refs.tableRef.getRegisters();
+            this.$refs.tableRef.reloadTable();
         },
-        openEditBookModal(bookId) {
-            this.selectedBook = this.books.find((book) => book.id === bookId);
-            this.newBookModal = true;
-        },
-        closeNewBookModal() {
-            this.newBookModal = false;
-            this.selectedBook = null;
-        },
-        deleteBook(bookId) {
+
+        onDestroyRegister(book) {
             if (confirm("Tem certeza que deseja excluir este livro?")) {
-                // Perform delete operation here
+                this.$inertia.delete(`/books/destroy/${book}`);
+
+                this.$refs.tableRef.getRegisters();
+                this.$refs.tableRef.reloadTable();
             }
         },
     },
-    mounted() {
-        // Initialize DataTable
-        let table = new DataTable("#bookTable", {
-            responsive: true,
-            pageLength: 5,
-            lengthMenu: [
-                [5, 10, 25, 50, -1],
-                [5, 10, 25, 50, "Todos"],
-            ],
-            language: {
-                url: "https://cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json",
-            },
-            columnDefs: [{ orderable: false, targets: 2 }],
-        });
-    },
+    mounted() {},
 };
 </script>
+
+<style scoped>
+.modal.fade.show {
+    background-color: transparent;
+}
+</style>

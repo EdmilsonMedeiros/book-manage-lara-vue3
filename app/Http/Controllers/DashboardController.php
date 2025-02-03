@@ -12,8 +12,11 @@ use Spatie\Permission\Models\Permission;
 class DashboardController extends Controller
 {
     public function index(){
-        $books = Book::all();
-        $authors = Author::wherestate(true)->get();
+        $books = Book::with('author')->get()->map(function ($book) {
+            $book->cover = $book->cover ? asset('storage/' . $book->cover) : null;
+            return $book;
+        });
+        $authors = Author::where('state', true)->get();
 
         return Inertia::render("Dashboard/Index", [
             'user' => Auth::user(),

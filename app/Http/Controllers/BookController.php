@@ -10,6 +10,28 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     /**
+     * Get books
+     */
+    public function getBooks(Request $request){
+        $perpage        = $request->perPage;
+        $searchedValue  = $request->searchedValue;
+        $page           = $request->page;
+
+        $registers = Book::where('title', 'LIKE', "%$searchedValue%")
+            ->orWhere('description', 'LIKE', "%$searchedValue%")
+            ->orWhere('id', 'LIKE', "%$searchedValue%")
+            ->with('author')
+            ->paginate($perpage, ['*'], 'page', $page);
+
+        $registers->getCollection()->transform(function ($book) {
+            $book->cover = $book->cover ? asset('storage/' . $book->cover) : null;
+            return $book;
+        });
+
+        return response()->json($registers, 200);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -45,7 +67,7 @@ class BookController extends Controller
         try{
             Book::create($validated);
         }catch(Exception $e){
-            return redirect()->back()->with('error', 'Algo deu errado: ' . $e->getMessage());
+            return redirect()->with('error', 'Algo deu errado: ' . $e->getMessage());
         }
         
         return redirect()->back()->with('success', 'Livro cadastrado com sucesso.');
@@ -79,7 +101,7 @@ class BookController extends Controller
             'description'       => 'required|string',
             'author_id'         => 'required',
             'publish_date'      => 'required|date',
-            'cover'             => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'cover'             => 'mimes:jpg,jpeg,png|max:2048',
         ], $messages);
 
         try {

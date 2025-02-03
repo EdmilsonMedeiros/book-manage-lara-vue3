@@ -62,8 +62,21 @@ export default {
         "$page.props.flash": {
             handler() {
                 this.show = true;
+                this.autoClose();
             },
             deep: true,
+        },
+    },
+    mounted() {
+        this.autoClose();
+    },
+    methods: {
+        autoClose() {
+            if (this.show) {
+                setTimeout(() => {
+                    this.show = false;
+                }, 8000);
+            }
         },
     },
 };

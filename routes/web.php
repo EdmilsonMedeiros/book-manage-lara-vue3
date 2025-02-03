@@ -37,6 +37,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class, 'log'])->group
         Route::post('/store', [BookController::class, 'store'])->name('books.store');
         Route::post('/update', [BookController::class, 'update'])->name('books.update');
         Route::delete('destroy/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+        Route::post('/getBooks', [BookController::class, 'getBooks'])->name('books.getBooks');
     });
 
     Route::prefix('users')->group(function(){
