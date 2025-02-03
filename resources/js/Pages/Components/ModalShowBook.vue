@@ -38,7 +38,6 @@
                         ></i>
                         <p class="text-muted">Sem imagem</p>
                     </div>
-
                     <div class="mb-3">
                         <label class="fw-bold">Título:</label>
                         <p>{{ book.title }}</p>
@@ -60,7 +59,6 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
     props: {
@@ -81,7 +79,4 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>
+<style scoped></style>

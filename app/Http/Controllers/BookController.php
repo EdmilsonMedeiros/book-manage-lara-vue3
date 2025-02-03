@@ -18,18 +18,16 @@ class BookController extends Controller
         $searchedValue  = $request->searchedValue;
         $page           = $request->page;
 
-        // Carregando os livros com a relação 'author' e realizando a busca.
         $registers = Book::where('title', 'LIKE', "%$searchedValue%")
             ->orWhere('description', 'LIKE', "%$searchedValue%")
             ->orWhere('id', 'LIKE', "%$searchedValue%")
-            ->with('author')  // Incluindo a relação 'author'
+            ->with('author') 
             ->paginate($perpage, ['*'], 'page', $page);
 
-        // Modificando os livros para incluir o nome do autor
+
         $registers->getCollection()->transform(function ($book) {
             $book->cover = $book->cover ? asset('storage/' . $book->cover) : null;
             
-            // Incluindo o nome do autor no livro
             $book->author_name = $book->author ? $book->author->name : null;
 
             return $book;

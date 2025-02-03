@@ -21,7 +21,6 @@
                         data-bs-dismiss="modal"
                     ></button>
                 </div>
-
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="fw-bold mb-2"
@@ -49,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button
                         type="button"
@@ -63,7 +61,6 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
     props: {
@@ -110,9 +107,7 @@ export default {
                     onSuccess: () => {
                         $("#setPermissionModal").modal("hide");
                     },
-                    onError: () => {
-                        //
-                    },
+                    onError: () => {},
                 }
             );
         },

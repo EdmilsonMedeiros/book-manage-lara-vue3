@@ -138,11 +138,9 @@
         </div>
     </div>
 </template>
-
 <script>
 import { Link } from "@inertiajs/vue3";
 import FlashMessages from "@/Pages/Components/FlashMessages.vue";
-
 export default {
     components: {
         Link,
@@ -165,7 +163,6 @@ export default {
     },
 };
 </script>
-
 <style>
 .hover-opacity:hover {
     opacity: 0.8;

@@ -1,48 +1,45 @@
 <template>
-    <Layout :user="user" />
-
-    <!-- Header Section -->
-    <div class="container mt-2">
-        <div class="row mb-2">
-            <div
-                class="col-md-12 d-flex justify-content-between align-items-center"
-            >
-                <div>
-                    <h2 class="fw-bold text-primary mb-0">Lista de Usuários</h2>
-                    <p class="text-muted small">
-                        Gerencie a pemissão dos usuários
-                    </p>
+    <Layout :user="user">
+        <div class="container mt-2">
+            <div class="row mb-2">
+                <div
+                    class="col-md-12 d-flex justify-content-between align-items-center"
+                >
+                    <div>
+                        <h2 class="fw-bold text-primary mb-0">
+                            Lista de Usuários
+                        </h2>
+                        <p class="text-muted small">
+                            Gerencie a pemissão dos usuários
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container">
-        <Table
-            :requestUrl="'/users/getUsers'"
-            :collumnNames="['Nome', 'Email']"
-            :collumnKeys="['name', 'email']"
-            :checkBoxes="false"
-            :deleteAllButton="false"
-            :perPage="5"
-            :searchTitle="'Buscar usuários'"
-            :buttons="['permission']"
-            @editPermission="onEditPermission"
-        />
-
-        <ModalSetUserPermission
-            v-if="selectedUser"
-            :selectedUser="selectedUser"
-            :allPermissions="permissions"
-        />
-    </div>
+        <div class="container">
+            <Table
+                :requestUrl="'/users/getUsers'"
+                :collumnNames="['Nome', 'Email']"
+                :collumnKeys="['name', 'email']"
+                :checkBoxes="false"
+                :deleteAllButton="false"
+                :perPage="10"
+                :searchTitle="'Buscar usuários'"
+                :buttons="['permission']"
+                @editPermission="onEditPermission"
+            />
+            <ModalSetUserPermission
+                v-if="selectedUser"
+                :selectedUser="selectedUser"
+                :allPermissions="permissions"
+            />
+        </div>
+    </Layout>
 </template>
-
 <script>
 import Layout from "@/Pages/Layout/Layout.vue";
 import Table from "@/Pages/Components/Table.vue";
 import ModalSetUserPermission from "@/Pages/Components/ModalSetUserPermission.vue";
-
 export default {
     components: {
         Layout,

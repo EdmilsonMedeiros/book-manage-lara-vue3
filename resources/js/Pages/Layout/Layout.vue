@@ -81,6 +81,10 @@
             <FlashMessages />
         </div>
     </div>
+
+    <div class="main-content">
+        <slot />
+    </div>
 </template>
 
 <script>

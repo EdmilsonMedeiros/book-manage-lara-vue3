@@ -101,7 +101,6 @@
                             />
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">
                             {{ book ? "Atualizar" : "Salvar" }}
@@ -113,11 +112,9 @@
         </div>
     </div>
 </template>
-
 <script>
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import FlashMessages from "../Components/FlashMessages.vue";
-
 export default {
     components: {
         FlashMessages,
@@ -163,7 +160,6 @@ export default {
             if (this.form.cover === null) {
                 delete this.form.cover;
             }
-
             const formData = new FormData();
             for (const key in this.form) {
                 formData.append(key, this.form[key]);
@@ -171,16 +167,13 @@ export default {
             if (this.book) {
                 formData.append("id", this.book.id);
             }
-
             if (this.book) {
                 this.$inertia.post("/books/update/", formData, {
                     onSuccess: () => {
                         $("#newBookModal" + this.book.id).modal("hide");
                         this.$emit("onBookCreated");
                     },
-                    onError: () => {
-                        // handle error
-                    },
+                    onError: () => {},
                 });
                 return;
             } else {
@@ -189,9 +182,7 @@ export default {
                         $("#newBookModal").modal("hide");
                         this.$emit("onBookCreated");
                     },
-                    onError: (errors) => {
-                        // console.error(errors);
-                    },
+                    onError: (errors) => {},
                 });
             }
         },

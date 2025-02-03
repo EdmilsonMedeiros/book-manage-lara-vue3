@@ -146,10 +146,7 @@
     </div>
 
     <div class="d-flex justify-content-between">
-        <div>
-            <!-- Mostrando {{ selectedPerPage }} de  -->
-            {{ totalRegisters ?? 0 }} registros
-        </div>
+        <div>{{ totalRegisters ?? 0 }} registros</div>
 
         <div>
             <Paginator

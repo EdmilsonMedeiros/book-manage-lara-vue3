@@ -10,7 +10,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
                 <div class="modal-header">
-                    <h5 class="modal-title" :id="modalLabel">
+                    <h5 class="modal-title">
                         {{ author ? "Editar Autor" : "Novo Autor" }}
                     </h5>
                     <button
@@ -89,10 +89,7 @@
         </div>
     </div>
 </template>
-
 <script>
-import { event } from "jquery";
-
 export default {
     emits: ["authorSubmited"],
     props: {
@@ -107,34 +104,27 @@ export default {
             },
         };
     },
-    computed: {
-        modalLabel() {
-            return this.author
-                ? `newAuthorModalLabel${this.author.id}`
-                : "newAuthorModalLabel";
-        },
-    },
     methods: {
         setState(value) {
             this.form.state = value;
         },
         handleForm() {
             if (!this.author) {
-                this.$inertia.put(`authors/store`, this.form);
+                this.$inertia.post(`authors/store`, this.form);
+                this.$emit("authorSubmited");
+                $(`#modalNewAuthor`).modal("hide");
             } else {
                 this.$inertia.put(`authors/update/${this.id}`, this.form);
+                $(`#modalNewAuthor${this.id}`).modal("hide");
+                this.$emit("authorSubmited");
             }
-
-            this.$emit("authorSubmited");
-
-            $(`#modalNewAuthor${this.id}`).modal("hide");
         },
     },
     watch: {
         author: {
-            immediate: true, // Garante que a função rode na inicialização
+            immediate: true,
             handler(newAuthor) {
-                if (newAuthor) {
+                if (this.author) {
                     this.id = newAuthor.id;
                     this.form = {
                         name: newAuthor.name,

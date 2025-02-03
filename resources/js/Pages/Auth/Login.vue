@@ -22,7 +22,6 @@
                             Por favor, faça login na sua conta
                         </p>
                     </div>
-
                     <div class="card-body p-4">
                         <form
                             @submit.prevent="handleSubmit"
@@ -51,7 +50,6 @@
                                     />
                                 </div>
                             </div>
-
                             <div class="mb-4">
                                 <label for="password" class="form-label fw-bold"
                                     >Senha</label
@@ -72,7 +70,6 @@
                                     />
                                 </div>
                             </div>
-
                             <button
                                 type="submit"
                                 class="btn btn-primary w-100 py-3 fw-bold text-uppercase btn-lg shadow-sm"
@@ -82,7 +79,6 @@
                             </button>
                         </form>
                     </div>
-
                     <div class="card-footer text-center py-4 bg-light border-0">
                         <div class="text-muted">
                             Não tem uma conta?
@@ -99,12 +95,10 @@
         </div>
     </div>
 </template>
-
 <script>
 import { Link } from "@inertiajs/vue3";
 import FlashMessages from "@/Pages/Components/FlashMessages.vue";
 import axios from "axios";
-
 export default {
     components: {
         Link,
@@ -125,7 +119,6 @@ export default {
     },
 };
 </script>
-
 <style scoped>
 .hover-opacity:hover {
     opacity: 0.8;
