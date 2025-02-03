@@ -104,12 +104,17 @@
                         :src="register[withImage]"
                         alt="Capa do livro"
                         srcset=""
-                        class="m-1 p-1"
                     />
                     {{ register[collumnKey] }}
                 </td>
 
                 <td v-if="buttons">
+                    <a
+                        @click="editPermission(register)"
+                        href="#"
+                        v-if="buttons.includes('permission')"
+                        class="ml-1 btn btn-outline-warning btn-sm bi bi-key m-1"
+                    ></a>
                     <a
                         @click="destroyRegister(register.id)"
                         href="#"
@@ -174,6 +179,7 @@ export default {
         "page-change",
         "onShowRegister",
         "editRegister",
+        "editPermission",
     ],
     props: {
         requestUrl: String, // UR de busca dos registros
@@ -218,7 +224,6 @@ export default {
                 this.selectedPerPage = registers.data.per_page;
                 this.registers = registers.data.data;
                 this.actualPage = registers.data.current_page;
-                console.log(registers.data);
             } catch (e) {
                 console.log("Erro to reload data: ", e);
             }
@@ -311,6 +316,9 @@ export default {
         },
         editRegister(register) {
             this.$emit("editRegister", register);
+        },
+        editPermission(register) {
+            this.$emit("editPermission", register);
         },
     },
     mounted() {

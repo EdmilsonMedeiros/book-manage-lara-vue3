@@ -31,6 +31,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class, 'log'])->group
         Route::post('store', [AuthorController::class, 'store'])->name('authors.store');
         Route::put('update/{author}', [AuthorController::class, 'update'])->name('authors.update');
         Route::delete('destroy/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+        Route::post('/getAuthors', [AuthorController::class, 'getAuthors'])->name('users.getAuthors');
     });
 
     Route::prefix('books')->group(function(){
@@ -43,6 +44,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class, 'log'])->group
     Route::prefix('users')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         ROute::put('permissions/sync/{user}', [UserController::class, 'permissionsSync'])->name('users.permissions.sync');
+        Route::post('/getUsers', [UserController::class, 'getUsers'])->name('users.getUsers');
     });
 
 });

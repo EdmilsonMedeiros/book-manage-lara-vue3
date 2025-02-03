@@ -4,9 +4,17 @@
   "resources/js/Pages/Auth/Login.vue?vue&type=style&index=0&scoped=7bcf82ac&lang.css": [],
   "resources/js/Pages/Auth/Register.vue": [],
   "resources/js/Pages/Auth/Register.vue?vue&type=style&index=0&lang.css": [],
+  "resources/js/Pages/Author/Index.vue": [],
   "resources/js/Pages/Components/FlashMessages.vue": [],
+  "resources/js/Pages/Components/ModalNewBook.vue": [],
+  "resources/js/Pages/Components/ModalSetUserPermission.vue": [],
+  "resources/js/Pages/Components/ModalShowBook.vue": [],
+  "resources/js/Pages/Components/ModalShowBook.vue?vue&type=style&index=0&scoped=2fdd74d3&lang.css": [],
+  "resources/js/Pages/Components/Paginator.vue": [],
+  "resources/js/Pages/Components/Table.vue": [],
   "resources/js/Pages/Dashboard/Index.vue": [],
+  "resources/js/Pages/Dashboard/Index.vue?vue&type=style&index=0&scoped=ce599387&lang.css": [],
   "resources/js/Pages/Layout/Layout.vue": [],
-  "resources/js/Pages/Layout/Layout.vue?vue&type=style&index=0&scoped=f9b196a0&lang.css": [],
+  "resources/js/Pages/Users/Index.vue": [],
   "resources/js/ssr.js": []
 }

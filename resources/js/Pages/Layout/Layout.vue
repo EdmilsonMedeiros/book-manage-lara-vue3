@@ -33,26 +33,28 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <Link
-                                    :href="{ name: 'dashboard' }"
-                                    class="nav-link"
-                                    :class="{
-                                        active: isActiveRoute('dashboard'),
-                                    }"
+                                    :href="'/'"
+                                    :class="[
+                                        'nav-link',
+                                        isActiveRoute('/') ? 'active' : '',
+                                    ]"
                                 >
                                     <span class="bi bi-house"></span> Início
                                 </Link>
                             </li>
                             <li class="nav-item">
                                 <Link
-                                    :href="{ name: 'authors.index' }"
-                                    class="nav-link"
-                                    :class="{
-                                        active: isActiveRoute('authors.*'),
-                                    }"
+                                    :href="'/authors/'"
+                                    :class="[
+                                        'nav-link',
+                                        isActiveRoute('/authors')
+                                            ? 'active'
+                                            : '',
+                                    ]"
                                 >
                                     <span
                                         class="bi bi-file-earmark-person"
@@ -62,69 +64,39 @@
                             </li>
                             <li class="nav-item">
                                 <Link
-                                    :href="{ name: 'users.index' }"
-                                    class="nav-link"
-                                    :class="{
-                                        active: isActiveRoute('users.*'),
-                                    }"
+                                    :href="'/users'"
+                                    :class="[
+                                        'nav-link',
+                                        isActiveRoute('/users') ? 'active' : '',
+                                    ]"
                                 >
                                     <span class="bi bi-person-gear"></span>
                                     Gerenciar Permissões
                                 </Link>
                             </li>
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
             </nav>
-        </div>
-
-        <div v-if="errorMessage" class="container mt-4">
-            <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-            >
-                {{ errorMessage }}
-                <button
-                    type="button"
-                    class="btn-close"
-                    @click="clearError"
-                    aria-label="Close"
-                ></button>
-            </div>
-        </div>
-
-        <div v-if="successMessage" class="container mt-4">
-            <div
-                class="alert alert-success alert-dismissible fade show"
-                role="alert"
-            >
-                {{ successMessage }}
-                <button
-                    type="button"
-                    class="btn-close"
-                    @click="clearSuccess"
-                    aria-label="Close"
-                ></button>
-            </div>
+            <FlashMessages />
         </div>
     </div>
 </template>
 
 <script>
 import { Link } from "@inertiajs/vue3";
+import FlashMessages from "@/Pages/Components/FlashMessages.vue";
 
 export default {
     components: {
         Link,
+        FlashMessages,
     },
     props: {
-        user: Object, // Replace with actual user data
+        user: Object,
     },
     data() {
-        return {
-            errorMessage: null,
-            successMessage: null,
-        };
+        return {};
     },
     methods: {
         logOut() {
@@ -136,7 +108,7 @@ export default {
             }
         },
         isActiveRoute(routeName) {
-            return this.$route.name === routeName;
+            return this.$page.url.toString() == routeName;
         },
         clearError() {
             this.errorMessage = null;
@@ -145,12 +117,5 @@ export default {
             this.successMessage = null;
         },
     },
-    mounted() {
-        // Fetch user data and messages if needed
-    },
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

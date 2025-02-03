@@ -5,16 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AuthorController extends Controller
 {
+
+    /**
+     * Get Authors
+     */
+    public function getAuthors(Request $request){
+        $perpage        = $request->perPage;
+        $searchedValue  = $request->searchedValue;
+        $page           = $request->page;
+
+        $registers = Author::where('name', 'LIKE', "%$searchedValue%")
+            ->orWhere('state', 'LIKE', "%$searchedValue%")
+            ->paginate($perpage, ['*'], 'page', $page);
+        
+        $registers->getCollection()->transform(function ($author) {
+            $author->state = $author->state == 1 ? 'Ativo' : 'Inativo';
+            return $author;
+        });
+
+        return response()->json($registers, 200);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $authors = Author::all();
-        return view('author.index', compact('authors'));
+
+        return Inertia::render('Author/Index', [
+            'authors' => $authors,
+            'user' => Auth::user()
+        ]);
     }
 
     /**
@@ -49,7 +76,6 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        
         $messages = [
             'name.required'     => 'O campo nome é obrigatório',
             'name.string'       => 'O nome deve ser um texto',

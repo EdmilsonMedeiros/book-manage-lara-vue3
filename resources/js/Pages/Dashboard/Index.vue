@@ -17,7 +17,7 @@
                         </p>
                     </div>
                     <button
-                        class="btn btn-outline-primary px-4 d-flex align-items-center"
+                        class="btn btn-primary px-4 d-flex align-items-center"
                         data-bs-toggle="modal"
                         data-bs-target="#newBookModal"
                     >
@@ -28,12 +28,10 @@
         </div>
 
         <div class="container">
-            <FlashMessages />
-
             <Table
                 :requestUrl="'/books/getBooks'"
-                :collumnNames="['Titulo', 'Data da Publicação']"
-                :collumnKeys="['title', 'publish_date']"
+                :collumnNames="['Titulo', 'Autor']"
+                :collumnKeys="['title', 'author_name']"
                 :checkBoxes="false"
                 :buttons="['delete', 'edit', 'show']"
                 :deleteAllButton="false"
@@ -62,8 +60,6 @@
 
 <script>
 import Layout from "@/Pages/Layout/Layout.vue";
-import FlashMessages from "@/Pages/Components/FlashMessages.vue";
-import DataTable from "datatables.net-dt";
 import ModalNewBook from "@/Pages/Components/ModalNewBook.vue";
 import Table from "@/Pages/Components/Table.vue";
 import ModalShowBook from "@/Pages/Components/ModalShowBook.vue";
@@ -78,7 +74,6 @@ export default {
     },
     components: {
         Layout,
-        FlashMessages,
         ModalNewBook,
         Table,
         ModalShowBook,
@@ -91,14 +86,7 @@ export default {
             selectedShowBook: null,
         };
     },
-    emits: [
-        "destroyRegisterEmit",
-        "destroySelectedRegistersEmit",
-        "showRegisterEmit",
-        "onShowRegister",
-        "onBookCreated",
-        "editRegister",
-    ],
+    emits: ["onBookCreated"],
     methods: {
         showRegisterEmit(book) {
             this.selectedShowBook = book;
