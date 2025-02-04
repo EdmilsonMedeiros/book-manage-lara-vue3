@@ -99,16 +99,13 @@ export default {
         onDestroyRegister(book) {
             if (confirm("Tem certeza que deseja excluir este livro?")) {
                 this.$inertia.delete(`/books/destroy/${book}`);
-                this.$refs.tableRef.getRegisters();
-                this.$refs.tableRef.reloadTable();
+                setTimeout(() => {
+                    this.$refs.tableRef.getRegisters();
+                    this.$refs.tableRef.reloadTable();
+                }, 100);
             }
         },
     },
     mounted() {},
 };
 </script>
-<style scoped>
-.modal.fade.show {
-    background-color: transparent;
-}
-</style>

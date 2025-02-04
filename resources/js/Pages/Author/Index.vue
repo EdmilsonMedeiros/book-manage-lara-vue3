@@ -69,7 +69,7 @@ export default {
             setTimeout(() => {
                 this.$refs.tableAuthorseRef.reloadTable();
                 this.$refs.tableAuthorseRef.getRegisters();
-            }, 25);
+            }, 100);
         },
         editRegister(author) {
             this.selectedAuthor = author;

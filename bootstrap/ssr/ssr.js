@@ -1,9 +1,8 @@
 import { Link, createInertiaApp } from "@inertiajs/vue3";
-import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderComponent, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderClass } from "vue/server-renderer";
-import { useSSRContext, resolveComponent, mergeProps, withCtx, createTextVNode, createVNode, createSSRApp, h } from "vue";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderComponent, ssrRenderStyle, ssrRenderAttr, ssrRenderSlot, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
+import { useSSRContext, resolveComponent, mergeProps, withCtx, createTextVNode, createVNode, createBlock, createCommentVNode, openBlock, createSSRApp, h } from "vue";
 import axios from "axios";
-import "datatables.net-dt";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
 const _export_sfc = (sfc, props) => {
@@ -13,7 +12,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$b = {
+const _sfc_main$c = {
   data() {
     return {
       show: true
@@ -41,7 +40,7 @@ const _sfc_main$b = {
     }
   }
 };
-function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}>`);
   if (_ctx.$page.props.flash.success && $data.show) {
     _push(`<div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert"><div>${ssrInterpolate(_ctx.$page.props.flash.success)}</div><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`);
@@ -65,18 +64,18 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</div>`);
 }
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/FlashMessages.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
-const FlashMessages = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b]]);
+const FlashMessages = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: FlashMessages
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$a = {
+const _sfc_main$b = {
   components: {
     Link,
     FlashMessages
@@ -95,12 +94,12 @@ const _sfc_main$a = {
     }
   }
 };
-function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_FlashMessages = resolveComponent("FlashMessages");
   const _component_Link = resolveComponent("Link");
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "container mt-5" }, _attrs))} data-v-7bcf82ac><div class="row justify-content-center" data-v-7bcf82ac><div class="col-md-6" data-v-7bcf82ac>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "container mt-5" }, _attrs))} data-v-aff44517><div class="row justify-content-center" data-v-aff44517><div class="col-md-6" data-v-aff44517>`);
   _push(ssrRenderComponent(_component_FlashMessages, null, null, _parent));
-  _push(`<div class="card shadow-lg border-0 rounded-lg overflow-hidden" data-v-7bcf82ac><div class="card-header bg-gradient-primary text-white text-center py-4" style="${ssrRenderStyle({ "background": "linear-gradient(\n                                45deg,\n                                #4e73df,\n                                #224abe\n                            )" })}" data-v-7bcf82ac><h3 class="mb-0 fw-bold" data-v-7bcf82ac><i class="bi bi-person-circle me-2 fs-4" data-v-7bcf82ac></i> Bem-vindo de volta </h3><p class="mt-2 mb-0 text-white-50" data-v-7bcf82ac> Por favor, faça login na sua conta </p></div><div class="card-body p-4" data-v-7bcf82ac><form class="needs-validation" data-v-7bcf82ac><div class="mb-4" data-v-7bcf82ac><label for="email" class="form-label fw-bold" data-v-7bcf82ac>Endereço de Email</label><div class="input-group input-group-lg" data-v-7bcf82ac><span class="input-group-text bg-light border-end-0" data-v-7bcf82ac><i class="bi bi-envelope text-primary" data-v-7bcf82ac></i></span><input${ssrRenderAttr("value", $data.form.email)} type="email" class="form-control border-start-0" id="email" required autofocus placeholder="Digite seu email" data-v-7bcf82ac></div></div><div class="mb-4" data-v-7bcf82ac><label for="password" class="form-label fw-bold" data-v-7bcf82ac>Senha</label><div class="input-group input-group-lg" data-v-7bcf82ac><span class="input-group-text bg-light border-end-0" data-v-7bcf82ac><i class="bi bi-key text-primary" data-v-7bcf82ac></i></span><input${ssrRenderAttr("value", $data.form.password)} type="password" class="form-control border-start-0" id="password" required placeholder="Digite sua senha" data-v-7bcf82ac></div></div><button type="submit" class="btn btn-primary w-100 py-3 fw-bold text-uppercase btn-lg shadow-sm" data-v-7bcf82ac><i class="bi bi-box-arrow-in-right me-2" data-v-7bcf82ac></i>Entrar </button></form></div><div class="card-footer text-center py-4 bg-light border-0" data-v-7bcf82ac><div class="text-muted" data-v-7bcf82ac> Não tem uma conta? `);
+  _push(`<div class="card shadow-lg border-0 rounded-lg overflow-hidden" data-v-aff44517><div class="card-header bg-gradient-primary text-white text-center py-4" style="${ssrRenderStyle({ "background": "linear-gradient(\n                                45deg,\n                                #4e73df,\n                                #224abe\n                            )" })}" data-v-aff44517><h3 class="mb-0 fw-bold" data-v-aff44517><i class="bi bi-person-circle me-2 fs-4" data-v-aff44517></i> Bem-vindo de volta </h3><p class="mt-2 mb-0 text-white-50" data-v-aff44517> Por favor, faça login na sua conta </p></div><div class="card-body p-4" data-v-aff44517><form class="needs-validation" data-v-aff44517><div class="mb-4" data-v-aff44517><label for="email" class="form-label fw-bold" data-v-aff44517>Endereço de Email</label><div class="input-group input-group-lg" data-v-aff44517><span class="input-group-text bg-light border-end-0" data-v-aff44517><i class="bi bi-envelope text-primary" data-v-aff44517></i></span><input${ssrRenderAttr("value", $data.form.email)} type="email" class="form-control border-start-0" id="email" required autofocus placeholder="Digite seu email" data-v-aff44517></div></div><div class="mb-4" data-v-aff44517><label for="password" class="form-label fw-bold" data-v-aff44517>Senha</label><div class="input-group input-group-lg" data-v-aff44517><span class="input-group-text bg-light border-end-0" data-v-aff44517><i class="bi bi-key text-primary" data-v-aff44517></i></span><input${ssrRenderAttr("value", $data.form.password)} type="password" class="form-control border-start-0" id="password" required placeholder="Digite sua senha" data-v-aff44517></div></div><button type="submit" class="btn btn-primary w-100 py-3 fw-bold text-uppercase btn-lg shadow-sm" data-v-aff44517><i class="bi bi-box-arrow-in-right me-2" data-v-aff44517></i>Entrar </button></form></div><div class="card-footer text-center py-4 bg-light border-0" data-v-aff44517><div class="text-muted" data-v-aff44517> Não tem uma conta? `);
   _push(ssrRenderComponent(_component_Link, {
     href: "/register",
     class: "text-primary fw-bold text-decoration-none"
@@ -118,18 +117,18 @@ function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></div></div></div>`);
 }
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/Login.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const Login = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a], ["__scopeId", "data-v-7bcf82ac"]]);
+const Login = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b], ["__scopeId", "data-v-aff44517"]]);
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Login
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$9 = {
+const _sfc_main$a = {
   components: {
     Link,
     FlashMessages
@@ -150,7 +149,7 @@ const _sfc_main$9 = {
     }
   }
 };
-function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_FlashMessages = resolveComponent("FlashMessages");
   const _component_Link = resolveComponent("Link");
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "container mt-5" }, _attrs))}><div class="row justify-content-center"><div class="col-md-6">`);
@@ -173,29 +172,27 @@ function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></div></div></div>`);
 }
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/Register.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const Register = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const Register = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a]]);
 const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Register
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$8 = {
+const _sfc_main$9 = {
   components: {
-    Link
+    Link,
+    FlashMessages
   },
   props: {
     user: Object
   },
   data() {
-    return {
-      errorMessage: null,
-      successMessage: null
-    };
+    return {};
   },
   methods: {
     logOut() {
@@ -217,9 +214,10 @@ const _sfc_main$8 = {
     }
   }
 };
-function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_Link = resolveComponent("Link");
-  _push(`<div${ssrRenderAttrs(_attrs)}><div class="container mt-1"><div class="card bg-primary text-white"><div class="card-body d-flex justify-content-between align-items-center"><div><span class="text-white-50">Bem-vindo,</span><span class="fw-bold ms-1">${ssrInterpolate($props.user.name)}</span></div><form class="m-0"><button type="submit" class="btn btn-outline-light"><i class="bi bi-box-arrow-right me-2"></i>Sair </button></form></div></div></div><div class="container"><nav class="navbar navbar-expand-lg navbar-light bg-light mt-2"><div class="p-1"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav"><li class="nav-item">`);
+  const _component_FlashMessages = resolveComponent("FlashMessages");
+  _push(`<!--[--><div><div class="container mt-1"><div class="card bg-primary text-white"><div class="card-body d-flex justify-content-between align-items-center"><div><span class="text-white-50">Bem-vindo,</span><span class="fw-bold ms-1">${ssrInterpolate($props.user.name)}</span></div><form class="m-0"><button type="submit" class="btn btn-outline-light"><i class="bi bi-box-arrow-right me-2"></i>Sair </button></form></div></div></div><div class="container"><nav class="navbar navbar-expand-lg navbar-light bg-light mt-2"><div class="p-1"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav"><li class="nav-item">`);
   _push(ssrRenderComponent(_component_Link, {
     href: "/",
     class: [
@@ -279,281 +277,24 @@ function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></nav></div>`);
-  if ($data.errorMessage) {
-    _push(`<div class="container mt-4"><div class="alert alert-danger alert-dismissible fade show" role="alert">${ssrInterpolate($data.errorMessage)} <button type="button" class="btn-close" aria-label="Close"></button></div></div>`);
-  } else {
-    _push(`<!---->`);
-  }
-  if ($data.successMessage) {
-    _push(`<div class="container mt-4"><div class="alert alert-success alert-dismissible fade show" role="alert">${ssrInterpolate($data.successMessage)} <button type="button" class="btn-close" aria-label="Close"></button></div></div>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</div>`);
+  _push(`</li></ul></div></div></nav>`);
+  _push(ssrRenderComponent(_component_FlashMessages, null, null, _parent));
+  _push(`</div></div><div class="main-content">`);
+  ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent);
+  _push(`</div><!--]-->`);
 }
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Layout/Layout.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$8]]);
-const __vite_glob_0_10 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const __vite_glob_0_11 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Layout
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$7 = {
-  components: {
-    Layout
-  },
-  props: {
-    user: Object
-  }
-};
-function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_Layout = resolveComponent("Layout");
-  _push(`<!--[-->`);
-  _push(ssrRenderComponent(_component_Layout, { user: $props.user }, null, _parent));
-  _push(`<div class="container mt-2"><div class="row mb-2"><div class="col-md-12 d-flex justify-content-between align-items-center"><div><h2 class="fw-bold text-primary mb-0">Lista de Autores</h2><p class="text-muted small"> Gerencie os autores cadastrados no sistema </p></div><button class="btn btn-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal"> Novo Autor <span class="bi bi-plus"></span></button></div></div></div><!--]-->`);
-}
-const _sfc_setup$7 = _sfc_main$7.setup;
-_sfc_main$7.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Author/Index.vue");
-  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
-};
-const Index$2 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["ssrRender", _sfc_ssrRender$7]]);
-const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Index$2
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$6 = {
-  components: {
-    FlashMessages
-  },
-  props: {
-    book: {
-      type: Object,
-      default: null
-    },
-    authors: {
-      type: Array,
-      required: true
-    }
-  },
-  emits: ["onBookCreated"],
-  data() {
-    return {
-      form: {
-        title: this.book ? this.book.title : "",
-        description: this.book ? this.book.description : "",
-        publish_date: this.book ? this.book.publish_date : "",
-        author_id: this.book ? this.book.author_id : "",
-        cover: null
-      },
-      imagePreview: this.book && this.book.cover ? this.book.cover : null
-    };
-  },
-  methods: {
-    handleFileChange(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.form.cover = file;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.imagePreview = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        this.imagePreview = null;
-      }
-    },
-    handleSubmit() {
-      if (this.form.cover === null) {
-        delete this.form.cover;
-      }
-      const formData = new FormData();
-      for (const key in this.form) {
-        formData.append(key, this.form[key]);
-      }
-      if (this.book) {
-        formData.append("id", this.book.id);
-      }
-      if (this.book) {
-        this.$inertia.post("/books/update/", formData, {
-          onSuccess: () => {
-            $("#newBookModal" + this.book.id).modal("hide");
-            this.$emit("onBookCreated");
-          },
-          onError: () => {
-          }
-        });
-        return;
-      } else {
-        this.$inertia.post("/books/store/", formData, {
-          onSuccess: () => {
-            $("#newBookModal").modal("hide");
-            this.$emit("onBookCreated");
-          },
-          onError: (errors) => {
-          }
-        });
-      }
-    }
-  },
-  watch: {
-    book: {
-      immediate: true,
-      handler(newBook) {
-        if (newBook) {
-          this.form.title = newBook.title;
-          this.form.description = newBook.description;
-          this.form.publish_date = newBook.publish_date;
-          this.form.author_id = newBook.author_id;
-          this.imagePreview = newBook.cover;
-        } else {
-          this.form.title = "";
-          this.form.description = "";
-          this.form.publish_date = "";
-          this.form.author_id = "";
-          this.imagePreview = null;
-        }
-      }
-    }
-  }
-};
-function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_FlashMessages = resolveComponent("FlashMessages");
-  _push(`<div${ssrRenderAttrs(mergeProps({
-    class: "modal fade",
-    id: "newBookModal" + ($props.book ? $props.book.id : ""),
-    tabindex: "-1",
-    "aria-labelledby": "bookModalLabel",
-    "aria-hidden": "true",
-    "data-bs-backdrop": "static"
-  }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title" id="bookModalLabel">${ssrInterpolate($props.book ? "Editar Livro" : "Novo Livro")}</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>`);
-  _push(ssrRenderComponent(_component_FlashMessages, null, null, _parent));
-  _push(`<form enctype="multipart/form-data"><div class="modal-body"><div class="mb-3"><label for="title" class="form-label">Título</label><input type="text" class="form-control" id="title"${ssrRenderAttr("value", $data.form.title)} placeholder="Digite o título do livro" required></div><div class="mb-3"><label for="description" class="form-label">Descrição</label><textarea class="form-control" id="description" rows="3" placeholder="Digite a descrição do livro" required>${ssrInterpolate($data.form.description)}</textarea></div><div class="mb-3"><label for="publish_date" class="form-label">Data de Lançamento</label><input type="date" class="form-control" id="publish_date"${ssrRenderAttr("value", $data.form.publish_date)} required></div><div class="mb-3"><label for="author_id" class="form-label">Autor</label><select class="form-select" id="author_id" required><option value=""${ssrIncludeBooleanAttr(Array.isArray($data.form.author_id) ? ssrLooseContain($data.form.author_id, "") : ssrLooseEqual($data.form.author_id, "")) ? " selected" : ""}>Selecione um autor</option><!--[-->`);
-  ssrRenderList($props.authors, (author) => {
-    _push(`<option${ssrRenderAttr("value", author.id)}${ssrIncludeBooleanAttr(Array.isArray($data.form.author_id) ? ssrLooseContain($data.form.author_id, author.id) : ssrLooseEqual($data.form.author_id, author.id)) ? " selected" : ""}>${ssrInterpolate(author.name)}</option>`);
-  });
-  _push(`<!--]--></select></div><div class="mb-3"><label for="cover" class="form-label">Capa do Livro</label><input type="file" class="form-control" id="cover" accept=".jpg,.jpeg,.png">`);
-  if ($data.imagePreview) {
-    _push(`<img${ssrRenderAttr("src", $data.imagePreview)} alt="Preview" style="${ssrRenderStyle({ "max-width": "200px", "margin-top": "10px" })}">`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</div></div><div class="modal-footer"><button type="submit" class="btn btn-primary">${ssrInterpolate($props.book ? "Atualizar" : "Salvar")} <i class="bi bi-save"></i></button></div></form></div></div></div>`);
-}
-const _sfc_setup$6 = _sfc_main$6.setup;
-_sfc_main$6.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalNewBook.vue");
-  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
-};
-const ModalNewBook = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: ModalNewBook
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$5 = {
-  props: {
-    user: Object,
-    permissions: Object
-  },
-  data() {
-    return {
-      selectedPermissions: null
-    };
-  },
-  methods: {
-    savePermissions() {
-      console.log("Permissões salvas:", this.selectedPermissions);
-    }
-  }
-};
-function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({
-    class: "modal fade",
-    id: "setPermissionModal",
-    tabindex: "-1",
-    "aria-labelledby": "bookModalLabel",
-    "aria-hidden": "true",
-    "data-bs-backdrop": "static"
-  }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title" id="setPermissionModalLabel"> Gerenciar Permissões - ${ssrInterpolate($props.user.name)} <i class="bi bi-shield-lock"></i></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="mb-3"><label class="fw-bold mb-2">Permissões Disponíveis:</label><!--[-->`);
-  ssrRenderList($props.permissions, (permission, index) => {
-    _push(`<div class="form-check"><input name="permission" class="form-check-input" type="checkbox"${ssrRenderAttr("id", "permission_" + permission.id)}${ssrRenderAttr("value", permission.name)}${ssrIncludeBooleanAttr(
-      $props.user.permissions && $props.user.permissions.find(
-        (p) => p.id === permission.id
-      ) !== void 0
-    ) ? " checked" : ""}${ssrIncludeBooleanAttr(Array.isArray($data.selectedPermissions) ? ssrLooseContain($data.selectedPermissions, permission.name) : $data.selectedPermissions) ? " checked" : ""}><label class="form-check-label"${ssrRenderAttr("for", "permission_" + permission.id)}>${ssrInterpolate(permission.name)}</label></div>`);
-  });
-  _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-primary"> Salvar Permissões </button></div></div></div></div>`);
-}
-const _sfc_setup$5 = _sfc_main$5.setup;
-_sfc_main$5.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalSetUserPermission.vue");
-  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
-};
-const ModalSetUserPermission = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5]]);
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: ModalSetUserPermission
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$4 = {
-  props: {
-    book: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    formatDate(date) {
-      const options = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-      };
-      return new Date(date).toLocaleDateString("pt-BR", options);
-    }
-  }
-};
-function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({
-    class: "modal fade",
-    id: "showBookModal" + $props.book.id,
-    tabindex: "-1",
-    "aria-labelledby": "showBookModalLabel",
-    "aria-hidden": "true",
-    "data-bs-backdrop": "static"
-  }, _attrs))} data-v-2fdd74d3><div class="modal-dialog modal-dialog-centered" data-v-2fdd74d3><div class="modal-content p-3" data-v-2fdd74d3><div class="modal-header" data-v-2fdd74d3><h5 class="modal-title" id="showBookModalLabel" data-v-2fdd74d3> Detalhes do Livro <i class="bi bi-book mb-3" data-v-2fdd74d3></i></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-v-2fdd74d3></button></div><div class="modal-body" data-v-2fdd74d3>`);
-  if ($props.book.cover) {
-    _push(`<div class="mb-3" data-v-2fdd74d3><div class="text-center mb-3" data-v-2fdd74d3><img${ssrRenderAttr("src", $props.book.cover)} alt="Capa do livro" class="img-fluid rounded mb-3" style="${ssrRenderStyle({ "max-height": "200px" })}" data-v-2fdd74d3></div></div>`);
-  } else {
-    _push(`<div class="text-center mb-3" data-v-2fdd74d3><i class="bi bi-image text-muted" style="${ssrRenderStyle({ "font-size": "100px" })}" data-v-2fdd74d3></i><p class="text-muted" data-v-2fdd74d3>Sem imagem</p></div>`);
-  }
-  _push(`<div class="mb-3" data-v-2fdd74d3><label class="fw-bold" data-v-2fdd74d3>Título:</label><p data-v-2fdd74d3>${ssrInterpolate($props.book.title)}</p></div><div class="mb-3" data-v-2fdd74d3><label class="fw-bold" data-v-2fdd74d3>Descrição:</label><p data-v-2fdd74d3>${ssrInterpolate($props.book.description)}</p></div><div class="mb-3" data-v-2fdd74d3><label class="fw-bold" data-v-2fdd74d3>Data de Lançamento:</label><p data-v-2fdd74d3>${ssrInterpolate($options.formatDate($props.book.publish_date))}</p></div><div class="mb-3" data-v-2fdd74d3><label class="fw-bold" data-v-2fdd74d3>Autor:</label>`);
-  if ($props.book.author.name) {
-    _push(`<p data-v-2fdd74d3>${ssrInterpolate($props.book.author.name)}</p>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</div></div></div></div></div>`);
-}
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalShowBook.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
-};
-const ModalShowBook = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-2fdd74d3"]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: ModalShowBook
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$3 = {
+const _sfc_main$8 = {
   name: "PaginationComponent",
   props: {
     currentPage: {
@@ -614,25 +355,25 @@ const _sfc_main$3 = {
     }
   }
 };
-function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<nav${ssrRenderAttrs(mergeProps({ "aria-label": "Page navigation" }, _attrs))}><ul class="pagination"><li class="${ssrRenderClass([{ disabled: $props.currentPage === 1 }, "page-item"])}"><a class="page-link" href="#">Primeira</a></li><li class="${ssrRenderClass([{ disabled: $props.currentPage === 1 }, "page-item"])}"><a class="page-link" href="#">Anterior</a></li><!--[-->`);
   ssrRenderList($options.pages, (page) => {
     _push(`<li class="${ssrRenderClass([{ active: page === $props.currentPage }, "page-item"])}"><a class="page-link" href="#">${ssrInterpolate(page)}</a></li>`);
   });
   _push(`<!--]--><li class="${ssrRenderClass([{ disabled: $props.currentPage === $options.totalPages }, "page-item"])}"><a class="page-link" href="#">Próxima</a></li><li class="${ssrRenderClass([{ disabled: $props.currentPage === $options.totalPages }, "page-item"])}"><a class="page-link" href="#">Última</a></li></ul></nav>`);
 }
-const _sfc_setup$3 = _sfc_main$3.setup;
-_sfc_main$3.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/Paginator.vue");
-  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const Paginator = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
-const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Paginator = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$8]]);
+const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Paginator
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$2 = {
+const _sfc_main$7 = {
   components: {
     Paginator,
     Link
@@ -784,7 +525,7 @@ const _sfc_main$2 = {
   },
   watch: {}
 };
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_Paginator = resolveComponent("Paginator");
   _push(`<!--[-->`);
   if ($props.deleteAllButton && $data.selectedCheckboxes.length !== 0) {
@@ -827,7 +568,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         ssrRenderList($props.collumnKeys, (collumnKey, index2) => {
           _push(`<td>`);
           if ($props.withImage && index2 === 0) {
-            _push(`<img${ssrRenderAttr("width", 30)}${ssrRenderAttr("src", register[$props.withImage])} alt="Capa do livro" srcset="" class="m-1 p-1">`);
+            _push(`<img${ssrRenderAttr("width", 30)}${ssrRenderAttr("src", register[$props.withImage])} alt="Capa do livro" srcset="">`);
           } else {
             _push(`<!---->`);
           }
@@ -875,7 +616,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   } else {
     _push(`<!---->`);
   }
-  _push(`<div class="d-flex justify-content-between"><div>${ssrInterpolate($data.totalRegisters ?? 0)} registros </div><div>`);
+  _push(`<div class="d-flex justify-content-between"><div>${ssrInterpolate($data.totalRegisters ?? 0)} registros</div><div>`);
   _push(ssrRenderComponent(_component_Paginator, {
     onPageChange: $options.onPageChange,
     currentPage: $data.actualPage,
@@ -884,16 +625,473 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, null, _parent));
   _push(`</div></div><!--]-->`);
 }
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/Table.vue");
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+};
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["ssrRender", _sfc_ssrRender$7]]);
+const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Table
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$6 = {
+  emits: ["authorSubmited"],
+  props: {
+    author: Object
+  },
+  data() {
+    return {
+      id: null,
+      form: {
+        name: "",
+        state: null
+      }
+    };
+  },
+  methods: {
+    setState(value) {
+      this.form.state = value;
+    },
+    handleForm() {
+      if (!this.author) {
+        this.$inertia.post(`authors/store`, this.form);
+        this.$emit("authorSubmited");
+        $(`#modalNewAuthor`).modal("hide");
+      } else {
+        this.$inertia.put(`authors/update/${this.id}`, this.form);
+        $(`#modalNewAuthor${this.id}`).modal("hide");
+        this.$emit("authorSubmited");
+      }
+    }
+  },
+  watch: {
+    author: {
+      immediate: true,
+      handler(newAuthor) {
+        if (this.author) {
+          this.id = newAuthor.id;
+          this.form = {
+            name: newAuthor.name,
+            state: newAuthor.state === "Ativo" ? 1 : 0
+          };
+        }
+      }
+    }
+  }
+};
+function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(mergeProps({
+    class: "modal fade",
+    id: "modalNewAuthor" + ($props.author ? $props.author.id : ""),
+    tabindex: "-1",
+    "aria-labelledby": "modalLabel",
+    "aria-hidden": "true",
+    "data-bs-backdrop": "static"
+  }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title">${ssrInterpolate($props.author ? "Editar Autor" : "Novo Autor")}</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><form><div class="modal-body"><div class="mb-3"><label for="name" class="form-label">Nome do Autor</label><input type="text" class="form-control" id="name" name="name" placeholder="Digite aqui o nome do autor"${ssrRenderAttr("value", $data.form.name)} required></div><div class="mb-3"><label class="form-label">Estado</label><div class="form-check"><input class="form-check-input" type="radio" name="state" id="stateActive" value="1"${ssrIncludeBooleanAttr($data.form.state == 1) ? " checked" : ""}><label class="form-check-label" for="stateActive"> Ativo </label></div><div class="form-check"><input class="form-check-input" type="radio" name="state" id="stateInactive" value="0"${ssrIncludeBooleanAttr($data.form.state == 0) ? " checked" : ""}><label class="form-check-label" for="stateInactive"> Inativo </label></div></div></div><div class="modal-footer"><button type="button" class="btn btn-primary">${ssrInterpolate($props.author ? "Atualizar" : "Salvar")} <span class="bi bi-save"></span></button></div></form></div></div></div>`);
+}
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalNewAuthor.vue");
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+};
+const ModalNewAuthor = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: ModalNewAuthor
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$5 = {
+  components: {
+    Layout,
+    Table,
+    ModalNewAuthor
+  },
+  props: {
+    user: Object
+  },
+  data() {
+    return {
+      selectedAuthor: null
+    };
+  },
+  methods: {
+    onAuthorSubmited() {
+      setTimeout(() => {
+        this.$refs.tableAuthorseRef.reloadTable();
+        this.$refs.tableAuthorseRef.getRegisters();
+      }, 25);
+    },
+    editRegister(author) {
+      this.selectedAuthor = author;
+      this.$nextTick(() => {
+        $(`#modalNewAuthor${author.id}`).modal("show");
+      });
+    },
+    onDestroyRegister(author) {
+      if (confirm("Tem certeza que deseja excluir?")) {
+        this.$inertia.delete(`/authors/destroy/${author}`, {
+          onSuccess: () => {
+            this.$refs.tableAuthorseRef.getRegisters();
+            this.$refs.tableAuthorseRef.reloadTable();
+          },
+          onError: () => {
+          }
+        });
+      }
+    }
+  }
+};
+function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_Layout = resolveComponent("Layout");
+  const _component_Table = resolveComponent("Table");
+  const _component_ModalNewAuthor = resolveComponent("ModalNewAuthor");
+  _push(ssrRenderComponent(_component_Layout, mergeProps({ user: $props.user }, _attrs), {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="container mt-2"${_scopeId}><div class="row mb-2"${_scopeId}><div class="col-md-12 d-flex justify-content-between align-items-center"${_scopeId}><div${_scopeId}><h2 class="fw-bold text-primary mb-0"${_scopeId}> Lista de Autores </h2><p class="text-muted small"${_scopeId}> Gerencie os autores cadastrados no sistema </p></div><button class="btn btn-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalNewAuthor"${_scopeId}> Novo Autor <span class="bi bi-plus"${_scopeId}></span></button></div></div></div><div class="container"${_scopeId}>`);
+        _push2(ssrRenderComponent(_component_Table, {
+          requestUrl: "/authors/getAuthors",
+          collumnNames: ["ID", "Nome", "Estado"],
+          collumnKeys: ["id", "name", "state"],
+          checkBoxes: false,
+          buttons: ["delete", "edit"],
+          deleteAllButton: false,
+          perPage: 10,
+          searchTitle: "Buscar autores",
+          onDestroyRegisterEmit: $options.onDestroyRegister,
+          onEditRegister: $options.editRegister,
+          ref: "tableAuthorseRef"
+        }, null, _parent2, _scopeId));
+        _push2(`</div>`);
+        if ($data.selectedAuthor) {
+          _push2(ssrRenderComponent(_component_ModalNewAuthor, {
+            author: $data.selectedAuthor,
+            onAuthorSubmited: $options.onAuthorSubmited
+          }, null, _parent2, _scopeId));
+        } else {
+          _push2(`<!---->`);
+        }
+        _push2(ssrRenderComponent(_component_ModalNewAuthor, { onAuthorSubmited: $options.onAuthorSubmited }, null, _parent2, _scopeId));
+      } else {
+        return [
+          createVNode("div", { class: "container mt-2" }, [
+            createVNode("div", { class: "row mb-2" }, [
+              createVNode("div", { class: "col-md-12 d-flex justify-content-between align-items-center" }, [
+                createVNode("div", null, [
+                  createVNode("h2", { class: "fw-bold text-primary mb-0" }, " Lista de Autores "),
+                  createVNode("p", { class: "text-muted small" }, " Gerencie os autores cadastrados no sistema ")
+                ]),
+                createVNode("button", {
+                  class: "btn btn-primary px-4 d-flex align-items-center",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#modalNewAuthor"
+                }, [
+                  createTextVNode(" Novo Autor "),
+                  createVNode("span", { class: "bi bi-plus" })
+                ])
+              ])
+            ])
+          ]),
+          createVNode("div", { class: "container" }, [
+            createVNode(_component_Table, {
+              requestUrl: "/authors/getAuthors",
+              collumnNames: ["ID", "Nome", "Estado"],
+              collumnKeys: ["id", "name", "state"],
+              checkBoxes: false,
+              buttons: ["delete", "edit"],
+              deleteAllButton: false,
+              perPage: 10,
+              searchTitle: "Buscar autores",
+              onDestroyRegisterEmit: $options.onDestroyRegister,
+              onEditRegister: $options.editRegister,
+              ref: "tableAuthorseRef"
+            }, null, 8, ["onDestroyRegisterEmit", "onEditRegister"])
+          ]),
+          $data.selectedAuthor ? (openBlock(), createBlock(_component_ModalNewAuthor, {
+            key: 0,
+            author: $data.selectedAuthor,
+            onAuthorSubmited: $options.onAuthorSubmited
+          }, null, 8, ["author", "onAuthorSubmited"])) : createCommentVNode("", true),
+          createVNode(_component_ModalNewAuthor, { onAuthorSubmited: $options.onAuthorSubmited }, null, 8, ["onAuthorSubmited"])
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+}
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Author/Index.vue");
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
+};
+const Index$2 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5]]);
+const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Index$2
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$4 = {
+  components: {
+    FlashMessages
+  },
+  props: {
+    book: {
+      type: Object,
+      default: null
+    },
+    authors: {
+      type: Array,
+      required: true
+    }
+  },
+  emits: ["onBookCreated"],
+  data() {
+    return {
+      form: {
+        title: this.book ? this.book.title : "",
+        description: this.book ? this.book.description : "",
+        publish_date: this.book ? this.book.publish_date : "",
+        author_id: this.book ? this.book.author_id : "",
+        cover: null
+      },
+      imagePreview: this.book && this.book.cover ? this.book.cover : null
+    };
+  },
+  methods: {
+    handleFileChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.form.cover = file;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.imagePreview = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        this.imagePreview = null;
+      }
+    },
+    handleSubmit() {
+      if (this.form.cover === null) {
+        delete this.form.cover;
+      }
+      const formData = new FormData();
+      for (const key in this.form) {
+        formData.append(key, this.form[key]);
+      }
+      if (this.book) {
+        formData.append("id", this.book.id);
+      }
+      if (this.book) {
+        this.$inertia.post("/books/update/", formData, {
+          onSuccess: () => {
+            $("#newBookModal" + this.book.id).modal("hide");
+            this.$emit("onBookCreated");
+          },
+          onError: () => {
+          }
+        });
+        return;
+      } else {
+        this.$inertia.post("/books/store/", formData, {
+          onSuccess: () => {
+            $("#newBookModal").modal("hide");
+            this.$emit("onBookCreated");
+          },
+          onError: (errors) => {
+          }
+        });
+      }
+    }
+  },
+  watch: {
+    book: {
+      immediate: true,
+      handler(newBook) {
+        if (newBook) {
+          this.form.title = newBook.title;
+          this.form.description = newBook.description;
+          this.form.publish_date = newBook.publish_date;
+          this.form.author_id = newBook.author_id;
+          this.imagePreview = newBook.cover;
+        } else {
+          this.form.title = "";
+          this.form.description = "";
+          this.form.publish_date = "";
+          this.form.author_id = "";
+          this.imagePreview = null;
+        }
+      }
+    }
+  }
+};
+function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_FlashMessages = resolveComponent("FlashMessages");
+  _push(`<div${ssrRenderAttrs(mergeProps({
+    class: "modal fade",
+    id: "newBookModal" + ($props.book ? $props.book.id : ""),
+    tabindex: "-1",
+    "aria-labelledby": "bookModalLabel",
+    "aria-hidden": "true",
+    "data-bs-backdrop": "static"
+  }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title" id="bookModalLabel">${ssrInterpolate($props.book ? "Editar Livro" : "Novo Livro")}</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>`);
+  _push(ssrRenderComponent(_component_FlashMessages, null, null, _parent));
+  _push(`<form enctype="multipart/form-data"><div class="modal-body"><div class="mb-3"><label for="title" class="form-label">Título</label><input type="text" class="form-control" id="title"${ssrRenderAttr("value", $data.form.title)} placeholder="Digite o título do livro" required></div><div class="mb-3"><label for="description" class="form-label">Descrição</label><textarea class="form-control" id="description" rows="3" placeholder="Digite a descrição do livro" required>${ssrInterpolate($data.form.description)}</textarea></div><div class="mb-3"><label for="publish_date" class="form-label">Data de Lançamento</label><input type="date" class="form-control" id="publish_date"${ssrRenderAttr("value", $data.form.publish_date)} required></div><div class="mb-3"><label for="author_id" class="form-label">Autor</label><select class="form-select" id="author_id" required><option value=""${ssrIncludeBooleanAttr(Array.isArray($data.form.author_id) ? ssrLooseContain($data.form.author_id, "") : ssrLooseEqual($data.form.author_id, "")) ? " selected" : ""}>Selecione um autor</option><!--[-->`);
+  ssrRenderList($props.authors, (author) => {
+    _push(`<option${ssrRenderAttr("value", author.id)}${ssrIncludeBooleanAttr(Array.isArray($data.form.author_id) ? ssrLooseContain($data.form.author_id, author.id) : ssrLooseEqual($data.form.author_id, author.id)) ? " selected" : ""}>${ssrInterpolate(author.name)}</option>`);
+  });
+  _push(`<!--]--></select></div><div class="mb-3"><label for="cover" class="form-label">Capa do Livro</label><input type="file" class="form-control" id="cover" accept=".jpg,.jpeg,.png">`);
+  if ($data.imagePreview) {
+    _push(`<img${ssrRenderAttr("src", $data.imagePreview)} alt="Preview" style="${ssrRenderStyle({ "max-width": "200px", "margin-top": "10px" })}">`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></div><div class="modal-footer"><button type="submit" class="btn btn-primary">${ssrInterpolate($props.book ? "Atualizar" : "Salvar")} <i class="bi bi-save"></i></button></div></form></div></div></div>`);
+}
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalNewBook.vue");
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+};
+const ModalNewBook = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4]]);
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: ModalNewBook
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$3 = {
+  props: {
+    selectedUser: Object,
+    allPermissions: Array
+  },
+  data() {
+    return {
+      user: null,
+      permissions: [],
+      selectedPermissions: []
+    };
+  },
+  watch: {
+    selectedUser: {
+      immediate: true,
+      handler(newUser) {
+        this.user = newUser;
+        this.updateSelectedPermissions();
+      }
+    },
+    allPermissions: {
+      immediate: true,
+      handler(newPermissions) {
+        this.permissions = newPermissions;
+      }
+    }
+  },
+  methods: {
+    updateSelectedPermissions() {
+      if (this.user && this.user.permissions) {
+        this.selectedPermissions = this.user.permissions.map(
+          (p) => p.name
+        );
+      } else {
+        this.selectedPermissions = [];
+      }
+    },
+    savePermissions() {
+      this.$inertia.put(
+        `/users/permissions/sync/${this.user.id}`,
+        this.selectedPermissions,
+        {
+          onSuccess: () => {
+            $("#setPermissionModal").modal("hide");
+          },
+          onError: () => {
+          }
+        }
+      );
+    }
+  }
+};
+function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  if ($data.user) {
+    _push(`<div${ssrRenderAttrs(mergeProps({
+      class: "modal fade",
+      id: "setPermissionModal",
+      tabindex: "-1",
+      "aria-labelledby": "bookModalLabel",
+      "aria-hidden": "true",
+      "data-bs-backdrop": "static"
+    }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title" id="setPermissionModalLabel"> Gerenciar Permissões - ${ssrInterpolate($data.user.name)} <i class="bi bi-shield-lock"></i></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="mb-3"><label class="fw-bold mb-2">Permissões Disponíveis:</label><!--[-->`);
+    ssrRenderList($data.permissions, (permission) => {
+      _push(`<div class="form-check"><input name="permission" class="form-check-input" type="checkbox"${ssrRenderAttr("id", "permission_" + permission.id)}${ssrRenderAttr("value", permission.name)}${ssrIncludeBooleanAttr(Array.isArray($data.selectedPermissions) ? ssrLooseContain($data.selectedPermissions, permission.name) : $data.selectedPermissions) ? " checked" : ""}><label class="form-check-label"${ssrRenderAttr("for", "permission_" + permission.id)}>${ssrInterpolate(permission.name)}</label></div>`);
+    });
+    _push(`<!--]--></div></div><div class="modal-footer"><button type="button" class="btn btn-primary"> Salvar Permissões </button></div></div></div></div>`);
+  } else {
+    _push(`<!---->`);
+  }
+}
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalSetUserPermission.vue");
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+};
+const ModalSetUserPermission = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: ModalSetUserPermission
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$2 = {
+  props: {
+    book: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    formatDate(date) {
+      const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      };
+      return new Date(date).toLocaleDateString("pt-BR", options);
+    }
+  }
+};
+function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(mergeProps({
+    class: "modal fade",
+    id: "showBookModal" + $props.book.id,
+    tabindex: "-1",
+    "aria-labelledby": "showBookModalLabel",
+    "aria-hidden": "true",
+    "data-bs-backdrop": "static"
+  }, _attrs))}><div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3"><div class="modal-header"><h5 class="modal-title" id="showBookModalLabel"> Detalhes do Livro <i class="bi bi-book mb-3"></i></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body">`);
+  if ($props.book.cover) {
+    _push(`<div class="mb-3"><div class="text-center mb-3"><img${ssrRenderAttr("src", $props.book.cover)} alt="Capa do livro" class="img-fluid rounded mb-3" style="${ssrRenderStyle({ "max-height": "200px" })}"></div></div>`);
+  } else {
+    _push(`<div class="text-center mb-3"><i class="bi bi-image text-muted" style="${ssrRenderStyle({ "font-size": "100px" })}"></i><p class="text-muted">Sem imagem</p></div>`);
+  }
+  _push(`<div class="mb-3"><label class="fw-bold">Título:</label><p>${ssrInterpolate($props.book.title)}</p></div><div class="mb-3"><label class="fw-bold">Descrição:</label><p>${ssrInterpolate($props.book.description)}</p></div><div class="mb-3"><label class="fw-bold">Data de Lançamento:</label><p>${ssrInterpolate($options.formatDate($props.book.publish_date))}</p></div><div class="mb-3"><label class="fw-bold">Autor:</label>`);
+  if ($props.book.author.name) {
+    _push(`<p>${ssrInterpolate($props.book.author.name)}</p>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></div></div></div></div>`);
+}
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/Table.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Components/ModalShowBook.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
-const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ModalShowBook = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: Table
+  default: ModalShowBook
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main$1 = {
   props: {
@@ -903,7 +1101,6 @@ const _sfc_main$1 = {
   },
   components: {
     Layout,
-    FlashMessages,
     ModalNewBook,
     Table,
     ModalShowBook
@@ -947,46 +1144,102 @@ const _sfc_main$1 = {
 };
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_Layout = resolveComponent("Layout");
-  const _component_FlashMessages = resolveComponent("FlashMessages");
   const _component_Table = resolveComponent("Table");
   const _component_ModalShowBook = resolveComponent("ModalShowBook");
   const _component_ModalNewBook = resolveComponent("ModalNewBook");
-  _push(`<!--[-->`);
-  _push(ssrRenderComponent(_component_Layout, { user: $props.user }, null, _parent));
-  _push(`<div data-v-ce599387><div class="container mt-2" data-v-ce599387><div class="row mb-2" data-v-ce599387><div class="col-md-12 d-flex justify-content-between align-items-center" data-v-ce599387><div data-v-ce599387><h2 class="fw-bold text-primary mb-0" data-v-ce599387> Lista de Livros </h2><p class="text-muted small" data-v-ce599387> Gerencie os livros cadastrados no sistema </p></div><button class="btn btn-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal" data-v-ce599387> Novo Livro <span class="bi bi-plus" data-v-ce599387></span></button></div></div></div><div class="container" data-v-ce599387>`);
-  _push(ssrRenderComponent(_component_FlashMessages, null, null, _parent));
-  _push(ssrRenderComponent(_component_Table, {
-    requestUrl: "/books/getBooks",
-    collumnNames: ["Titulo", "Data da Publicação"],
-    collumnKeys: ["title", "publish_date"],
-    checkBoxes: false,
-    buttons: ["delete", "edit", "show"],
-    deleteAllButton: false,
-    perPage: 5,
-    searchTitle: "Buscar livros",
-    onDestroyRegisterEmit: $options.onDestroyRegister,
-    onShowRegisterEmit: $options.showRegisterEmit,
-    onEditRegister: $options.editRegister,
-    ref: "tableRef",
-    withImage: "cover"
-  }, null, _parent));
-  _push(`</div></div>`);
-  if ($data.selectedShowBook) {
-    _push(ssrRenderComponent(_component_ModalShowBook, { book: $data.selectedShowBook }, null, _parent));
-  } else {
-    _push(`<!---->`);
-  }
-  _push(ssrRenderComponent(_component_ModalNewBook, {
-    authors: $props.authors,
-    onOnBookCreated: $options.onBookCreated
-  }, null, _parent));
-  _push(ssrRenderComponent(_component_ModalNewBook, {
-    "v-if": $data.selectedBook,
-    authors: $props.authors,
-    book: $data.selectedBook,
-    onOnBookCreated: $options.onBookCreated
-  }, null, _parent));
-  _push(`<!--]-->`);
+  _push(ssrRenderComponent(_component_Layout, mergeProps({ user: $props.user }, _attrs), {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div${_scopeId}><div class="container mt-2"${_scopeId}><div class="row mb-2"${_scopeId}><div class="col-md-12 d-flex justify-content-between align-items-center"${_scopeId}><div${_scopeId}><h2 class="fw-bold text-primary mb-0"${_scopeId}> Lista de Livros </h2><p class="text-muted small"${_scopeId}> Gerencie os livros cadastrados no sistema </p></div><button class="btn btn-primary px-4 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#newBookModal"${_scopeId}> Novo Livro <span class="bi bi-plus"${_scopeId}></span></button></div></div></div><div class="container"${_scopeId}>`);
+        _push2(ssrRenderComponent(_component_Table, {
+          requestUrl: "/books/getBooks",
+          collumnNames: ["Titulo", "Autor"],
+          collumnKeys: ["title", "author_name"],
+          checkBoxes: false,
+          buttons: ["delete", "edit", "show"],
+          deleteAllButton: false,
+          perPage: 10,
+          searchTitle: "Buscar livros",
+          onDestroyRegisterEmit: $options.onDestroyRegister,
+          onShowRegisterEmit: $options.showRegisterEmit,
+          onEditRegister: $options.editRegister,
+          ref: "tableRef",
+          withImage: "cover"
+        }, null, _parent2, _scopeId));
+        _push2(`</div></div>`);
+        if ($data.selectedShowBook) {
+          _push2(ssrRenderComponent(_component_ModalShowBook, { book: $data.selectedShowBook }, null, _parent2, _scopeId));
+        } else {
+          _push2(`<!---->`);
+        }
+        _push2(ssrRenderComponent(_component_ModalNewBook, {
+          authors: $props.authors,
+          onOnBookCreated: $options.onBookCreated
+        }, null, _parent2, _scopeId));
+        _push2(ssrRenderComponent(_component_ModalNewBook, {
+          "v-if": $data.selectedBook,
+          authors: $props.authors,
+          book: $data.selectedBook,
+          onOnBookCreated: $options.onBookCreated
+        }, null, _parent2, _scopeId));
+      } else {
+        return [
+          createVNode("div", null, [
+            createVNode("div", { class: "container mt-2" }, [
+              createVNode("div", { class: "row mb-2" }, [
+                createVNode("div", { class: "col-md-12 d-flex justify-content-between align-items-center" }, [
+                  createVNode("div", null, [
+                    createVNode("h2", { class: "fw-bold text-primary mb-0" }, " Lista de Livros "),
+                    createVNode("p", { class: "text-muted small" }, " Gerencie os livros cadastrados no sistema ")
+                  ]),
+                  createVNode("button", {
+                    class: "btn btn-primary px-4 d-flex align-items-center",
+                    "data-bs-toggle": "modal",
+                    "data-bs-target": "#newBookModal"
+                  }, [
+                    createTextVNode(" Novo Livro "),
+                    createVNode("span", { class: "bi bi-plus" })
+                  ])
+                ])
+              ])
+            ]),
+            createVNode("div", { class: "container" }, [
+              createVNode(_component_Table, {
+                requestUrl: "/books/getBooks",
+                collumnNames: ["Titulo", "Autor"],
+                collumnKeys: ["title", "author_name"],
+                checkBoxes: false,
+                buttons: ["delete", "edit", "show"],
+                deleteAllButton: false,
+                perPage: 10,
+                searchTitle: "Buscar livros",
+                onDestroyRegisterEmit: $options.onDestroyRegister,
+                onShowRegisterEmit: $options.showRegisterEmit,
+                onEditRegister: $options.editRegister,
+                ref: "tableRef",
+                withImage: "cover"
+              }, null, 8, ["onDestroyRegisterEmit", "onShowRegisterEmit", "onEditRegister"])
+            ])
+          ]),
+          $data.selectedShowBook ? (openBlock(), createBlock(_component_ModalShowBook, {
+            key: 0,
+            book: $data.selectedShowBook
+          }, null, 8, ["book"])) : createCommentVNode("", true),
+          createVNode(_component_ModalNewBook, {
+            authors: $props.authors,
+            onOnBookCreated: $options.onBookCreated
+          }, null, 8, ["authors", "onOnBookCreated"]),
+          createVNode(_component_ModalNewBook, {
+            "v-if": $data.selectedBook,
+            authors: $props.authors,
+            book: $data.selectedBook,
+            onOnBookCreated: $options.onBookCreated
+          }, null, 8, ["v-if", "authors", "book", "onOnBookCreated"])
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
@@ -994,8 +1247,8 @@ _sfc_main$1.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Dashboard/Index.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const Index$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-ce599387"]]);
-const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Index$1 = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
+const __vite_glob_0_10 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Index$1
 }, Symbol.toStringTag, { value: "Module" }));
@@ -1027,29 +1280,65 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   const _component_Layout = resolveComponent("Layout");
   const _component_Table = resolveComponent("Table");
   const _component_ModalSetUserPermission = resolveComponent("ModalSetUserPermission");
-  _push(`<!--[-->`);
-  _push(ssrRenderComponent(_component_Layout, { user: $props.user }, null, _parent));
-  _push(`<div class="container mt-2"><div class="row mb-2"><div class="col-md-12 d-flex justify-content-between align-items-center"><div><h2 class="fw-bold text-primary mb-0">Lista de Usuários</h2><p class="text-muted small"> Gerencie a pemissão dos usuários </p></div></div></div></div><div class="container">`);
-  _push(ssrRenderComponent(_component_Table, {
-    requestUrl: "/users/getUsers",
-    collumnNames: ["Nome", "Email"],
-    collumnKeys: ["name", "email"],
-    checkBoxes: false,
-    deleteAllButton: false,
-    perPage: 5,
-    searchTitle: "Buscar usuários",
-    buttons: ["permission"],
-    onEditPermission: $options.onEditPermission
-  }, null, _parent));
-  if ($data.selectedUser) {
-    _push(ssrRenderComponent(_component_ModalSetUserPermission, {
-      user: $data.selectedUser,
-      permissions: $props.permissions
-    }, null, _parent));
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</div><!--]-->`);
+  _push(ssrRenderComponent(_component_Layout, mergeProps({ user: $props.user }, _attrs), {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="container mt-2"${_scopeId}><div class="row mb-2"${_scopeId}><div class="col-md-12 d-flex justify-content-between align-items-center"${_scopeId}><div${_scopeId}><h2 class="fw-bold text-primary mb-0"${_scopeId}> Lista de Usuários </h2><p class="text-muted small"${_scopeId}> Gerencie a pemissão dos usuários </p></div></div></div></div><div class="container"${_scopeId}>`);
+        _push2(ssrRenderComponent(_component_Table, {
+          requestUrl: "/users/getUsers",
+          collumnNames: ["Nome", "Email"],
+          collumnKeys: ["name", "email"],
+          checkBoxes: false,
+          deleteAllButton: false,
+          perPage: 10,
+          searchTitle: "Buscar usuários",
+          buttons: ["permission"],
+          onEditPermission: $options.onEditPermission
+        }, null, _parent2, _scopeId));
+        if ($data.selectedUser) {
+          _push2(ssrRenderComponent(_component_ModalSetUserPermission, {
+            selectedUser: $data.selectedUser,
+            allPermissions: $props.permissions
+          }, null, _parent2, _scopeId));
+        } else {
+          _push2(`<!---->`);
+        }
+        _push2(`</div>`);
+      } else {
+        return [
+          createVNode("div", { class: "container mt-2" }, [
+            createVNode("div", { class: "row mb-2" }, [
+              createVNode("div", { class: "col-md-12 d-flex justify-content-between align-items-center" }, [
+                createVNode("div", null, [
+                  createVNode("h2", { class: "fw-bold text-primary mb-0" }, " Lista de Usuários "),
+                  createVNode("p", { class: "text-muted small" }, " Gerencie a pemissão dos usuários ")
+                ])
+              ])
+            ])
+          ]),
+          createVNode("div", { class: "container" }, [
+            createVNode(_component_Table, {
+              requestUrl: "/users/getUsers",
+              collumnNames: ["Nome", "Email"],
+              collumnKeys: ["name", "email"],
+              checkBoxes: false,
+              deleteAllButton: false,
+              perPage: 10,
+              searchTitle: "Buscar usuários",
+              buttons: ["permission"],
+              onEditPermission: $options.onEditPermission
+            }, null, 8, ["onEditPermission"]),
+            $data.selectedUser ? (openBlock(), createBlock(_component_ModalSetUserPermission, {
+              key: 0,
+              selectedUser: $data.selectedUser,
+              allPermissions: $props.permissions
+            }, null, 8, ["selectedUser", "allPermissions"])) : createCommentVNode("", true)
+          ])
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
@@ -1058,7 +1347,7 @@ _sfc_main.setup = (props, ctx) => {
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 const Index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
-const __vite_glob_0_11 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_12 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Index
 }, Symbol.toStringTag, { value: "Module" }));
@@ -1067,7 +1356,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./Pages/Auth/Login.vue": __vite_glob_0_0, "./Pages/Auth/Register.vue": __vite_glob_0_1, "./Pages/Author/Index.vue": __vite_glob_0_2, "./Pages/Components/FlashMessages.vue": __vite_glob_0_3, "./Pages/Components/ModalNewBook.vue": __vite_glob_0_4, "./Pages/Components/ModalSetUserPermission.vue": __vite_glob_0_5, "./Pages/Components/ModalShowBook.vue": __vite_glob_0_6, "./Pages/Components/Paginator.vue": __vite_glob_0_7, "./Pages/Components/Table.vue": __vite_glob_0_8, "./Pages/Dashboard/Index.vue": __vite_glob_0_9, "./Pages/Layout/Layout.vue": __vite_glob_0_10, "./Pages/Users/Index.vue": __vite_glob_0_11 });
+      const pages = /* @__PURE__ */ Object.assign({ "./Pages/Auth/Login.vue": __vite_glob_0_0, "./Pages/Auth/Register.vue": __vite_glob_0_1, "./Pages/Author/Index.vue": __vite_glob_0_2, "./Pages/Components/FlashMessages.vue": __vite_glob_0_3, "./Pages/Components/ModalNewAuthor.vue": __vite_glob_0_4, "./Pages/Components/ModalNewBook.vue": __vite_glob_0_5, "./Pages/Components/ModalSetUserPermission.vue": __vite_glob_0_6, "./Pages/Components/ModalShowBook.vue": __vite_glob_0_7, "./Pages/Components/Paginator.vue": __vite_glob_0_8, "./Pages/Components/Table.vue": __vite_glob_0_9, "./Pages/Dashboard/Index.vue": __vite_glob_0_10, "./Pages/Layout/Layout.vue": __vite_glob_0_11, "./Pages/Users/Index.vue": __vite_glob_0_12 });
       return pages[`./Pages/${name}.vue`];
     },
     setup({ App, props, plugin }) {
